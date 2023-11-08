@@ -14,3 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'home');
+Route::view('/login', 'login');
+Route::view('/register', 'register');
+Route::view('/lomba', 'lomba');
+Route::view('/partner', 'partner');
+Route::view('/profile', 'profile');
