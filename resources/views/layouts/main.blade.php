@@ -9,8 +9,12 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    <x-navbar/>
-    @yield('content')
-    <x-footer/>
+    @if ($page == 'login' || $page == 'register')
+        @yield('content')
+    @else
+        <x-navbar/>
+        @yield('content')
+        <x-footer/>
+    @endif
 </body>
 </html>
