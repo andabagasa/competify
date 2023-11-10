@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "26fcfbff87cebafcbb21fa1a609c770c",
+    "content-hash": "6c5b4145ed741d10a06612254f341cad",
     "packages": [
         {
             "name": "blade-ui-kit/blade-icons",
@@ -144,16 +144,16 @@
         },
         {
             "name": "codeat3/blade-phosphor-icons",
-            "version": "2.0.2",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codeat3/blade-phosphor-icons.git",
-                "reference": "5881aeb0c782c1a41283bd12739dcbf2cd57c077"
+                "reference": "ec40733b3aac83fa8ce63bf04346f4b0e0ffe39a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codeat3/blade-phosphor-icons/zipball/5881aeb0c782c1a41283bd12739dcbf2cd57c077",
-                "reference": "5881aeb0c782c1a41283bd12739dcbf2cd57c077",
+                "url": "https://api.github.com/repos/codeat3/blade-phosphor-icons/zipball/ec40733b3aac83fa8ce63bf04346f4b0e0ffe39a",
+                "reference": "ec40733b3aac83fa8ce63bf04346f4b0e0ffe39a",
                 "shasum": ""
             },
             "require": {
@@ -203,7 +203,7 @@
             ],
             "support": {
                 "issues": "https://github.com/codeat3/blade-phosphor-icons/issues",
-                "source": "https://github.com/codeat3/blade-phosphor-icons/tree/2.0.2"
+                "source": "https://github.com/codeat3/blade-phosphor-icons/tree/2.0.0"
             },
             "funding": [
                 {
@@ -211,7 +211,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-07-05T07:52:12+00:00"
+            "time": "2023-07-04T14:57:48+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
