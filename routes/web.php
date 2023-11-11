@@ -20,6 +20,7 @@ Route::view('/register', 'register');
 Route::view('/lomba', 'lomba');
 Route::view('/partner', 'partner');
 Route::view('/profile', 'profile');
+Route::view('/editProfile', 'editProfile');
 
 
 use App\Http\Controllers\GuestController;
