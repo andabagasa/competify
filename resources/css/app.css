@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap');
+@import 'swiper/css/bundle';
 
 @tailwind base;
 @tailwind components;
@@ -6,7 +7,7 @@
 
 @layer base {
     * {
-        @apply font-worksans text-base scroll-smooth box-border;
+        @apply font-worksans scroll-smooth box-border;
     }
 
     body {
@@ -14,16 +15,40 @@
     }
 }
 
-@layer utilities {
+@layer components {
     .navlink {
         @apply font-semibold duration-100 hover:text-primary-300;
     }
 
-    .btn-primary {
-        @apply w-fit font-semibold text-white py-3 px-6 bg-primary-300 duration-100 rounded-lg cursor-pointer hover:bg-primary-400;
+    .btn-primary-normal {
+        @apply font-semibold text-white text-center py-3 px-6 bg-primary-300 duration-100 rounded-lg cursor-pointer hover:bg-primary-400;
     }
 
-    .btn-secondary {
-        @apply w-fit font-semibold text-primary-300 py-3 px-6 border border-primary-300 duration-100 rounded-lg cursor-pointer hover:bg-primary-100;
+    .btn-primary-small {
+        @apply text-sm font-semibold text-white text-center py-2 px-4 bg-primary-300 duration-100 rounded-lg cursor-pointer hover:bg-primary-400;
+    }
+
+    .btn-secondary-normal {
+        @apply font-semibold text-primary-300 text-center py-3 px-6 border-2 border-primary-300 duration-100 rounded-lg cursor-pointer hover:bg-primary-100;
+    }
+
+    .btn-secondary-small {
+        @apply text-sm font-semibold text-primary-300 text-center py-2 px-4 border-2 border-primary-300 duration-100 rounded-lg cursor-pointer hover:bg-primary-100;
+    }
+
+    .btn-icon {
+        @apply text-primary-300 text-center p-2 border-2 border-primary-300 duration-100 rounded-lg cursor-pointer hover:bg-primary-100;
+    }
+
+    .label-input {
+        @apply font-semibold flex flex-col gap-1;
+    }
+
+    .input-field {
+        @apply py-3 px-6 border border-neutral-300 rounded-lg;
+    }
+
+    .tag {
+        @apply text-xs text-center font-semibold py-1 px-2 bg-primary-100 text-primary-300 rounded-full;
     }
 }

@@ -1,12 +1,12 @@
 <nav class="w-full flex justify-between items-center container mx-auto py-4 bg-neutral-50">
-    <img src="{{asset('assets/images/logo-color.svg')}}" alt="Logo Competify">
-    <div class="flex gap-16 navlink">
-        <a href="">Beranda</a>
-        <a href="">Lomba</a>
-        <a href="">Partner</a>
+    <img src="{{asset('assets/images/logo-color.svg')}}" alt="Logo Competify" class="h-12 w-auto">
+    <div class="flex gap-16">
+        <a href="/" class="navlink">Beranda</a>
+        <a href="/lomba" class="navlink">Lomba</a>
+        <a href="/partner" class="navlink">Partner</a>
     </div>
-    <div>
-        <a href="/register" class="btn-secondary">Daftar</a>
-        <a href="/login" class="btn-primary">Masuk</a>
+    <div class="flex gap-6 h-12">
+        <a href="/register" class="btn-secondary-normal">Daftar</a>
+        <a href="/login" class="btn-primary-normal">Masuk</a>
     </div>
 </nav>
