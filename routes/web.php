@@ -24,12 +24,14 @@ Route::view('/profile', 'profile');
 
 use App\Http\Controllers\GuestController;
 
-Route::get('/login', [GuestController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [GuestController::class, 'login']);
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::prefix('home')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('home');
+
 });
 
-Route::get('/', [DashboardController::class, 'index'])->name('home');
+Route::get('/login', [GuestController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [GuestController::class, 'login']);
+
+
 
 
