@@ -21,6 +21,7 @@ Route::view('/lomba', 'lomba');
 Route::view('/partner', 'partner');
 Route::view('/profile', 'profile');
 Route::view('/editProfile', 'editProfile');
+Route::view('/admin', 'admin.dashboard');
 
 
 use App\Http\Controllers\GuestController;
