@@ -19,5 +19,12 @@ class GuestSeeder extends Seeder
             'password' => bcrypt('123'),
             'guest_type' => 'Admin'
         ]);
+
+        Guest::create([
+            'name' => 'Admin 2',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('321'),
+            'guest_type' => 'Admin'
+        ]);
     }
 }

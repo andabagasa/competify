@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Guest;
+use App\Models\Mahasiswa;
+use Illuminate\Support\Facades\DB;
 
 class GuestController extends Controller
 {
@@ -32,27 +34,41 @@ class GuestController extends Controller
         return view('login');
     }
 
-    public function register()
+    public function showRegisterForm()
     {
         return view('register');
     }
 
     public function store(Request $request)
     {
-        $validated = $request->validated();
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:guests',
+            'password' => 'required|string',
+        ]);
+    
+        $user = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'guest_type' => 'Mahasiswa',
+        ];
+        Guest::create($user);
 
-        if ($validated['password'] !== $validated['password_confirmation']) {
-            return back()->withErrors([
-                'password' => 'The password confirmation does not match.',
-            ])->onlyInput('password');
+
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+ 
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            
+            return redirect()->intended('home');
         }
-
-        $validated['password'] = Hash::make($validated['password']);
-
-        $user = Guest::create($validated);
-
-        Auth::login($user);
-
-        return redirect()->intended('home');
+ 
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
     }
 }

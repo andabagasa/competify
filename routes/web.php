@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'home');
 // Route::view('/login', 'login');
-Route::view('/register', 'register');
+// Route::view('/register', 'register');
 Route::view('/lomba', 'lomba');
 Route::view('/partner', 'partner');
 Route::view('/profile', 'profile');
@@ -33,6 +33,8 @@ Route::prefix('home')->group(function () {
 Route::get('/login', [GuestController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [GuestController::class, 'login']);
 
+Route::get('/register', [GuestController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [GuestController::class, 'store']);
 
 
 

@@ -18,4 +18,14 @@ class Mahasiswa extends Model
         'acc_instagram',
         'photo'
     ];
+
+    public function Guest()
+    {
+        return $this->belongsTo(Guest::class);
+    }
+
+    public function MahasiswaCategory()
+    {
+        return $this->hasMany(MahasiswaCategory::class);
+    }
 }
