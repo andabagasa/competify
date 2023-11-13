@@ -6,7 +6,7 @@
 @section('content', )
 <main>
     <section class="w-full h-screen flex items-center justify-between container mx-auto">
-        <a href="/" class="w-fit btn-secondary-small absolute top-6 flex gap-1 items-center">
+        <a href="/" class="w-fit btn-secondary-small absolute top-8 flex gap-1 items-center">
             <x-phosphor-caret-left class="w-5 h-5"/>
             <p>Kembali</p>
         </a>

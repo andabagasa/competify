@@ -13,8 +13,8 @@
         <img src="{{asset('assets/images/register.png')}}" alt="" class="hidden md:block h-[480px] w-auto">
         <div class="p-12 flex flex-col gap-6 bg-white rounded-2xl shadow">
             <h1 class="text-5xl font-bold">Buat Akun</h1>
-            @csrf
-            <form action="" method="post" class="w-full md:w-[360px] flex flex-col gap-1">
+            <form action="/register" method="post" class="w-full md:w-[360px] flex flex-col gap-1">
+                @csrf
                 <label for="nama" class="label-input">Nama</label>
                 <input type="text" name="nama" id="nama" placeholder="Masukkan nama anda" class="input-field">
                 <label for="email" class="label-input mt-3">Email</label>
