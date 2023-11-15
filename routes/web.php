@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GuestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,25 +15,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'home');
-// Route::view('/login', 'login');
-Route::view('/register', 'register');
-Route::view('/lomba', 'lomba');
-Route::view('/partner', 'partner');
-Route::view('/profile', 'profile');
-Route::view('/editProfile', 'editProfile');
-Route::view('/admin', 'admin.dashboard');
+// Mahasiswa Route
+Route::view('/', 'users.home');
+Route::view('/login', 'users.login');
+Route::view('/register', 'users.register');
+Route::view('/lomba', 'users.lomba');
+Route::view('/lomba-details', 'users.lomba-details');
+Route::view('/partner', 'users.partner');
+Route::view('/partner-details', 'users.partner-details');
+Route::view('/profile', 'users.profile');
+Route::view('/profile-edit', 'users.profile-edit');
+
+// Admin Route
+Route::view('/admin', 'admins.dashboard');
+Route::view('/admin-create', 'admins.dashboard-create');
+Route::view('/admin-update', 'admins.dashboard-update');
 
 
-use App\Http\Controllers\GuestController;
 
-Route::prefix('home')->group(function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('home');
 
-});
+// Route::prefix('home')->group(function () {
+//     Route::get('/', [DashboardController::class, 'index'])->name('home');
 
-Route::get('/login', [GuestController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [GuestController::class, 'login']);
+// });
+
+// Route::get('/login', [GuestController::class, 'showLoginForm'])->name('login');
+// Route::post('/login', [GuestController::class, 'login']);
 
 
 
