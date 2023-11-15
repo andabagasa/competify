@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Guest;
 use App\Models\Mahasiswa;
-use Illuminate\Support\Facades\DB;
 
 class GuestController extends Controller
 {
@@ -29,6 +27,17 @@ class GuestController extends Controller
         ])->onlyInput('email');
     }
 
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+ 
+        $request->session()->regenerateToken();
+ 
+        return redirect('/');
+    }
+
     public function showLoginForm()
     {
         return view('login');
@@ -44,6 +53,7 @@ class GuestController extends Controller
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:guests',
+            'no_tlp' => 'required|string',
             'password' => 'required|string',
         ]);
     
@@ -53,8 +63,12 @@ class GuestController extends Controller
             'password' => bcrypt($request->password),
             'guest_type' => 'Mahasiswa',
         ];
-        Guest::create($user);
+        $guest = Guest::create($user);
 
+        Mahasiswa::create([
+            'guest_id' => $guest->guest_id,
+            'no_tlp' => $request->no_tlp,
+        ]);
 
         $credentials = $request->validate([
             'email' => ['required', 'email'],

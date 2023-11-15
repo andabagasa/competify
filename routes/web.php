@@ -33,6 +33,7 @@ Route::prefix('home')->group(function () {
 
 Route::get('/login', [GuestController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [GuestController::class, 'login']);
+Route::get('/logout', [GuestController::class, 'logout'])->middleware('auth');
 
 Route::get('/register', [GuestController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [GuestController::class, 'store']);

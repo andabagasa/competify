@@ -11,9 +11,10 @@ class Mahasiswa extends Model
 
     protected $table = 'mahasiswas';
     protected $fillable = [
+        'guest_id',
         'nim',
         'description',
-        'no_telp',
+        'no_tlp',
         'acc_linkedin',
         'acc_instagram',
         'photo'

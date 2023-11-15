@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('informasi_lomba_category_id', 32)->unique();
             $table->foreignId('id_lomba', 32)->unique();
             $table->foreignId('category_id', 32)->unique();
+            $table->timestamps();
         });
     }
 

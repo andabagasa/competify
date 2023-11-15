@@ -20,7 +20,7 @@
                 <label for="email" class="label-input mt-3">Email</label>
                 <input type="email" name="email" id="email" placeholder="Masukkan email anda" class="input-field">
                 <label for="nowa" class="label-input mt-3">Nomor Whatsapp</label>
-                <input type="tel" " name="nowa" id="nowa" placeholder="Masukkan nomor whatsapp anda" class="input-field">
+                <input type="tel" " name="no_tlp" id="no_tlp" placeholder="Masukkan nomor whatsapp anda" class="input-field">
                 <label for="password" class="label-input mt-3">Password</label>
                 <input type="password" name="password" id="password" placeholder="Masukkan password anda" class="input-field">
                 <button type="submit" class="btn-primary-normal mt-5">Masuk</button>

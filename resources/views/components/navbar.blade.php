@@ -5,8 +5,9 @@
         <a href="/lomba" class="navlink">Lomba</a>
         <a href="/partner" class="navlink">Partner</a>
     </div>
-    @if (auth()->check())
-    <p>{{ auth()->guest()->email }}</p>
+    @if (Auth::check())
+    <p>{{ Auth::user()->name }}</p>
+    <a href="/logout">Logout</a>
     @else
     <div class="flex gap-6 h-12">
         <a href="/register" class="btn-secondary-normal">Daftar</a>

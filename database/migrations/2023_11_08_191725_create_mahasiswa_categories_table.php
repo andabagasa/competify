@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('mahasiswa_category_id', 32)->unique();
             $table->foreignId('mahasiswa_id', 32)->unique();
             $table->foreignId('category_id', 32)->unique();
+            $table->timestamps();
         });
     }
 
