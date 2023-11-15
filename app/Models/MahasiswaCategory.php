@@ -14,4 +14,14 @@ class MahasiswaCategory extends Model
         'mahasiswa_id',
         'category_id'
     ];
+
+    public function Mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class);
+    }
+
+    public function Category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

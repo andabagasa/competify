@@ -16,9 +16,17 @@ use App\Http\Controllers\GuestController;
 */
 
 // Mahasiswa Route
-Route::view('/', 'users.home');
-Route::view('/login', 'users.login');
-Route::view('/register', 'users.register');
+Route::prefix('home')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('home');
+
+});
+Route::get('/login', [GuestController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [GuestController::class, 'login']);
+Route::get('/logout', [GuestController::class, 'logout'])->middleware('auth');
+
+Route::get('/register', [GuestController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [GuestController::class, 'store']);
+
 Route::view('/lomba', 'users.lomba');
 Route::view('/lomba-details', 'users.lomba-details');
 Route::view('/partner', 'users.partner');
@@ -30,18 +38,3 @@ Route::view('/profile-edit', 'users.profile-edit');
 Route::view('/admin', 'admins.dashboard');
 Route::view('/admin-create', 'admins.dashboard-create');
 Route::view('/admin-update', 'admins.dashboard-update');
-
-
-
-
-// Route::prefix('home')->group(function () {
-//     Route::get('/', [DashboardController::class, 'index'])->name('home');
-
-// });
-
-// Route::get('/login', [GuestController::class, 'showLoginForm'])->name('login');
-// Route::post('/login', [GuestController::class, 'login']);
-
-
-
-

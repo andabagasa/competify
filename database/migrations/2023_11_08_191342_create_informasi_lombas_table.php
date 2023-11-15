@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('term_and_condition', 255);
             $table->string('poster', 255);
             $table->string('contact', 100);
+            $table->timestamps();
         });
     }
 

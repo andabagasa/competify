@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('admins', function (Blueprint $table) {
             $table->id('admin_id', 32)->unique();
             $table->foreignId('guest_id')->unique();
+            $table->timestamps();
         });
     }
 

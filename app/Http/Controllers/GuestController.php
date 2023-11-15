@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Guest;
+use App\Models\Mahasiswa;
 
 class GuestController extends Controller
 {
@@ -27,32 +27,62 @@ class GuestController extends Controller
         ])->onlyInput('email');
     }
 
-    public function showLoginForm()
+    public function logout(Request $request)
     {
-        return view('login');
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 
-    public function register()
+    public function showLoginForm()
     {
-        return view('register');
+        return view('users.login');
+    }
+
+    public function showRegisterForm()
+    {
+        return view('users.register');
     }
 
     public function store(Request $request)
     {
-        $validated = $request->validated();
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:guests',
+            'no_tlp' => 'required|string',
+            'password' => 'required|string',
+        ]);
 
-        if ($validated['password'] !== $validated['password_confirmation']) {
-            return back()->withErrors([
-                'password' => 'The password confirmation does not match.',
-            ])->onlyInput('password');
+        $user = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'guest_type' => 'Mahasiswa',
+        ];
+        $guest = Guest::create($user);
+
+        Mahasiswa::create([
+            'guest_id' => $guest->guest_id,
+            'no_tlp' => $request->no_tlp,
+        ]);
+
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect()->intended('home');
         }
 
-        $validated['password'] = Hash::make($validated['password']);
-
-        $user = Guest::create($validated);
-
-        Auth::login($user);
-
-        return redirect()->intended('home');
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
     }
 }

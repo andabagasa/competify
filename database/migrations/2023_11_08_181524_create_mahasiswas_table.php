@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('mahasiswas', function (Blueprint $table) {
             $table->id('mahasiswa_id', 32)->unique();
-            $table->foreignId('guest_id', 32)->unique();
-            $table->char('nim', 20)->unique();
-            $table->string('description', 255);
-            $table->string('no_tlp', 255);
-            $table->string('acc_linkedin', 255);
-            $table->string('acc_instagram', 255);
-            $table->string('photo', 255);
+            $table->foreignId('guest_id', 32)->unique()->references('guest_id')->on('guests');
+            $table->char('nim', 20)->unique()->nullable();
+            $table->string('description', 255)->nullable();
+            $table->string('no_tlp', 255)->unique();
+            $table->string('acc_linkedin', 255)->nullable();
+            $table->string('acc_instagram', 255)->nullable();
+            $table->string('photo', 255)->nullable();
+            $table->timestamps();
         });
     }
 
