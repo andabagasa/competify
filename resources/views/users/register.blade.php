@@ -14,7 +14,7 @@
         </div>
         <div class="p-12 flex flex-col gap-6 bg-white rounded-2xl shadow">
             <h1 class="text-5xl font-bold">Buat Akun</h1>
-            <form action="/register" method="post" class="w-full md:w-[360px] flex flex-col gap-1">
+            <form action="{{ route('register') }}" method="post" class="w-full md:w-[360px] flex flex-col gap-1">
                 @csrf
                 <label for="nama" class="label-input">Nama</label>
                 <input type="text" name="nama" id="nama" placeholder="Masukkan nama anda" class="input-field">

@@ -16,10 +16,8 @@ use App\Http\Controllers\GuestController;
 */
 
 // Mahasiswa Route
-Route::prefix('home')->group(function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('home');
+Route::get('/', [DashboardController::class, 'index']);
 
-});
 Route::get('/login', [GuestController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [GuestController::class, 'login']);
 Route::get('/logout', [GuestController::class, 'logout'])->middleware('auth');
