@@ -14,7 +14,7 @@
         </div>
         <div class="p-12 flex flex-col gap-6 bg-white rounded-2xl shadow">
             <h1 class="text-5xl font-bold">Masuk</h1>
-            <form action="{{ route('login') }}" method="post" class="w-full md:w-[360px] flex flex-col gap-1 mt-6">
+            <form action="/login" method="post" class="w-full md:w-[360px] flex flex-col gap-1 mt-6">
                 @csrf
                 <label for="email" class="label-input">Email</label>
                 <input type="email" name="email" id="email" placeholder="Masukkan email anda" class="input-field">
