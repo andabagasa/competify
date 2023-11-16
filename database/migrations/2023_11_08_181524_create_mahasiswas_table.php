@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('mahasiswas', function (Blueprint $table) {
             $table->id('mahasiswa_id', 32)->unique();
-            $table->foreignId('guest_id', 32)->unique()->references('guest_id')->on('guests');
+            $table->foreignId('guest_id', 32)->unique()->references('guest_id')->on('guests')->cascadeOnDelete()->cascadeOnUpdate();
             $table->char('nim', 20)->unique()->nullable();
             $table->string('description', 255)->nullable();
             $table->string('no_tlp', 255)->unique();

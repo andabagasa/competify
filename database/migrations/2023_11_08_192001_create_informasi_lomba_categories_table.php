@@ -11,10 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
+
         Schema::create('informasi_lomba_categories', function (Blueprint $table) {
             $table->id('informasi_lomba_category_id', 32)->unique();
-            $table->foreignId('id_lomba', 32)->unique();
-            $table->foreignId('category_id', 32)->unique();
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('id_lomba');
+            $table->foreign('category_id')
+                ->unique()
+                ->references('category_id')
+                ->on('categories')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
+            $table->foreign('id_lomba')
+                ->unique()
+                ->references('id_lomba')
+                ->on('informasi_lombas')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
             $table->timestamps();
         });
     }

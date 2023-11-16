@@ -13,8 +13,20 @@ return new class extends Migration
     {
         Schema::create('mahasiswa_categories', function (Blueprint $table) {
             $table->id('mahasiswa_category_id', 32)->unique();
-            $table->foreignId('mahasiswa_id', 32)->unique();
-            $table->foreignId('category_id', 32)->unique();
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('mahasiswa_id');
+            $table->foreign('category_id')
+                ->unique()
+                ->references('category_id')
+                ->on('categories')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
+            $table->foreign('mahasiswa_id')
+                ->unique()
+                ->references('mahasiswa_id')
+                ->on('mahasiswas')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
             $table->timestamps();
         });
     }
