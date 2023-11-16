@@ -29,7 +29,7 @@
         </div>
         <div class="swiper swiper-lomba">
             <div class="flex swiper-wrapper">
-                @foreach ( as )
+                {{-- @foreach ( as ) --}}
                     <div class="w-full bg-white rounded-lg swiper-slide">
                         <img src="{{asset('')}}" alt="" class="w-full h-40 rounded-t-lg">
                         <div class="p-4 flex flex-col gap-2">
@@ -54,7 +54,7 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+                {{-- @endforeach --}}
             </div>
         </div>
     </section>
@@ -71,7 +71,7 @@
         </div>
         <div class="swiper swiper-partner">
             <div class="flex swiper-wrapper">
-                @foreach ( as )
+                {{-- @foreach ( as ) --}}
                     <div class="w-full bg-white rounded-lg swiper-slide">
                         <img src="{{asset('')}}" alt="" class="w-full h-40 rounded-t-lg">
                         <div class="p-4 flex flex-col gap-2">
@@ -84,7 +84,7 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+                {{-- @endforeach --}}
             </div>
         </div>
     </section>

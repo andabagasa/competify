@@ -34,5 +34,6 @@ Route::view('/profile-edit', 'users.profile-edit');
 
 // Admin Route
 Route::view('/admin', 'admins.dashboard');
-Route::view('/admin-create', 'admins.dashboard-create');
-Route::view('/admin-update', 'admins.dashboard-update');
+Route::view('/admin/lomba', 'admins.lomba.lomba');
+Route::view('/admin/lomba-create', 'admins.lomba.lomba-create');
+Route::view('/admin/lomba-update', 'admins.lomba.lomba-update');
