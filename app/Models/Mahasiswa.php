@@ -11,11 +11,22 @@ class Mahasiswa extends Model
 
     protected $table = 'mahasiswas';
     protected $fillable = [
+        'guest_id',
         'nim',
         'description',
-        'no_telp',
+        'no_tlp',
         'acc_linkedin',
         'acc_instagram',
         'photo'
     ];
+
+    public function Guest()
+    {
+        return $this->belongsTo(Guest::class);
+    }
+
+    public function MahasiswaCategory()
+    {
+        return $this->hasMany(MahasiswaCategory::class);
+    }
 }

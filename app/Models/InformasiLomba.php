@@ -20,4 +20,14 @@ class InformasiLomba extends Model
         'poster',
         'contact'
     ];
+
+    public function Admin()
+    {
+        return $this->belongsTo(Admin::class);
+    }
+
+    public function InformasiLombaCategory()
+    {
+        return $this->hasMany(InformasiLombaCategory::class);
+    }
 }

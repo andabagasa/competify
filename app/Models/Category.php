@@ -10,6 +10,15 @@ class Category extends Model
     use HasFactory;
 
     protected $table = 'categories';
-    protected $fillable = 'name';
+    protected $fillable = ['name'];
 
+    public function InformasiLombaCategory()
+    {
+        return $this->hasMany(InformasiLombaCategory::class);
+    }
+
+    public function MahasiswaCategory()
+    {
+        return $this->hasMany(MahasiswaCategory::class);
+    }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GuestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,25 +15,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'home');
-// Route::view('/login', 'login');
-Route::view('/register', 'register');
-Route::view('/lomba', 'lomba');
-Route::view('/partner', 'partner');
-Route::view('/profile', 'profile');
-Route::view('/editProfile', 'editProfile');
-
-
-use App\Http\Controllers\GuestController;
-
-Route::prefix('home')->group(function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('home');
-
-});
+// Mahasiswa Route
+Route::get('/', [DashboardController::class, 'index']);
 
 Route::get('/login', [GuestController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [GuestController::class, 'login']);
+Route::get('/logout', [GuestController::class, 'logout'])->middleware('auth');
 
+Route::get('/register', [GuestController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [GuestController::class, 'store']);
 
+Route::view('/lomba', 'users.lomba');
+Route::view('/lomba-details', 'users.lomba-details');
+Route::view('/partner', 'users.partner');
+Route::view('/partner-details', 'users.partner-details');
+Route::view('/profile', 'users.profile');
+Route::view('/profile-edit', 'users.profile-edit');
 
-
+// Admin Route
+Route::view('/admin', 'admins.dashboard');
+Route::view('/admin/lomba', 'admins.lomba.lomba');
+Route::view('/admin/lomba-create', 'admins.lomba.lomba-create');
+Route::view('/admin/lomba-update', 'admins.lomba.lomba-update');

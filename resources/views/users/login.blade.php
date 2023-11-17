@@ -1,16 +1,17 @@
-@extends('layouts.main', ['page' => 'login'])
+@extends('users.layouts.main', ['page' => 'login'])
 
-@section('title', 'Masuk')
+@section('title', 'Login')
 
-@yield('content')
-@section('content', )
+@section('content')
 <main>
     <section class="w-full h-screen flex items-center justify-between container mx-auto">
-        <a href="/" class="w-fit btn-secondary-small absolute top-8 flex gap-1 items-center">
-            <x-phosphor-caret-left class="w-5 h-5"/>
-            <p>Kembali</p>
-        </a>
-        <img src="{{asset('assets/images/login.png')}}" alt="" class="hidden md:block h-[480px] w-auto">
+        <div class="flex flex-col relative -top-6">
+            <a href="/" class="w-fit btn-secondary-small flex gap-1 items-center">
+                <x-phosphor-caret-left class="w-5 h-5"/>
+                <p>Kembali</p>
+            </a>
+            <img src="{{asset('assets/images/login.png')}}" alt="" class="hidden md:block h-[480px] w-auto">
+        </div>
         <div class="p-12 flex flex-col gap-6 bg-white rounded-2xl shadow">
             <h1 class="text-5xl font-bold">Masuk</h1>
             <form action="/login" method="post" class="w-full md:w-[360px] flex flex-col gap-1 mt-6">

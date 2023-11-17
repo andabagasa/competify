@@ -5,8 +5,13 @@
         <a href="/lomba" class="navlink">Lomba</a>
         <a href="/partner" class="navlink">Partner</a>
     </div>
+    @if (Auth::check())
+    <p>{{ Auth::user()->name }}</p>
+    <a href="/logout">Logout</a>
+    @else
     <div class="flex gap-6 h-12">
         <a href="/register" class="btn-secondary-normal">Daftar</a>
         <a href="/login" class="btn-primary-normal">Masuk</a>
     </div>
+    @endif
 </nav>

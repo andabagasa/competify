@@ -14,4 +14,14 @@ class InformasiLombaCategory extends Model
         'id_lomba',
         'category_id'
     ];
+
+    public function InformasiLomba()
+    {
+        return $this->belongsTo(InformasiLomba::class);
+    }
+
+    public function Category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

@@ -13,15 +13,17 @@ return new class extends Migration
     {
         Schema::create('informasi_lombas', function (Blueprint $table) {
             $table->id('id_lomba', 32)->unique();
-            $table->foreignId('admin_id', 32)->unique();
+            $table->foreignId('admin_id', 32)->unique()->references('admin_id')->on('admins')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('title', 100);
             $table->string('description', 255);
             $table->string('organizer_name', 100);
             $table->string('reward', 255);
-            $table->timestamp('timeline');
+            $table->string('open_reg');
+            $table->string('close_reg');
             $table->string('term_and_condition', 255);
             $table->string('poster', 255);
             $table->string('contact', 100);
+            $table->timestamps();
         });
     }
 
