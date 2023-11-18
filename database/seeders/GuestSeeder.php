@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Guest;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class GuestSeeder extends Seeder
 {
@@ -13,18 +14,30 @@ class GuestSeeder extends Seeder
      */
     public function run(): void
     {
-        Guest::create([
-            'name' => 'Test User',
-            'email' => 'kesiddewa600@gmail.com',
-            'password' => bcrypt('123'),
-            'guest_type' => 'Admin'
-        ]);
+        $adminData= [
+            [
+                'name' => 'Admin 1',
+                'email' => 'kesiddewa600@gmail.com',
+                'password' => bcrypt('123'),
+                'guest_type' => 'Admin'
+            ],
+            [
+                'name' => 'Admin 2',
+                'email' => 'kesiddewa@gmail.com',
+                'password' => bcrypt('123'),
+                'guest_type' => 'Admin'
+            ]
+        ];
 
-        Guest::create([
-            'name' => 'Admin 2',
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt('321'),
-            'guest_type' => 'Admin'
+        foreach ($adminData as $data) {
+            $adminGuest = Guest::create($data);
+
+        DB::table('admins')->insert([
+            'guest_id' => $adminGuest->guest_id,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
     }
+    }
 }
+

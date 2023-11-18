@@ -11,7 +11,7 @@ class Admin extends Model
 
     public function Guest()
     {
-        return $this->belongsTo(Transaction::class);
+        return $this->belongsTo(Guest::class);
     }
 
     public function InformasiLomba()
