@@ -12,7 +12,7 @@
             <div class="w-[714px] text-center text-neutral-50 text-base font-normal  leading-normal mb-16 mt-4">
                 Lorem ipsum dolor sit amet consectetur. Tempor id nunc cursus euismod id egestas. Iaculis nec cursus sit
                 proin urna lorem ac potenti morbi.
-            </div>
+            </div> 
 
             <div class="absolute bottom-0 right-0"><img src="{{ asset('assets/images/tl.png') }}" alt=""></div>
             <div class="absolute top-0 left-0"><img src="{{ asset('assets/images/rb.png') }}" alt=""></div>
