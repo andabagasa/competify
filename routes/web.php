@@ -37,3 +37,6 @@ Route::view('/admin', 'admins.dashboard');
 Route::view('/admin/lomba', 'admins.lomba.lomba');
 Route::view('/admin/lomba-create', 'admins.lomba.lomba-create');
 Route::view('/admin/lomba-update', 'admins.lomba.lomba-update');
+Route::view('/admin/kategori', 'admins.kategori.kategori');
+Route::view('/admin/kategori-create', 'admins.kategori.kategori-create');
+Route::view('/admin/kategori-update', 'admins.kategori.kategori-update');

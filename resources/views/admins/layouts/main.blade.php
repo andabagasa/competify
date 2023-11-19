@@ -13,8 +13,8 @@
         <div class="flex justify-between items-center container mx-auto py-4">
             <img src="{{asset('assets/images/logo-white.svg')}}" alt="Logo Competify" class="h-12 w-auto">
             <div class="flex gap-16">
-                <a href="/admin/lomba" class="navlink text-white">Lomba</a>
-                <a href="/" class="navlink text-white">Kategori</a>
+                <a href="/admin/lomba" class="text-white font-semibold duration-100 hover:text-primary-100">Lomba</a>
+                <a href="/admin/kategori" class="text-white font-semibold duration-100 hover:text-primary-100">Kategori</a>
             </div>
             <a href="" class="btn-primary-small bg-white text-primary-300 hover:bg-primary-100">Logout</a>
         </div>
