@@ -1,8 +1,28 @@
-@extends('users.layouts.main', ['page' => ''])
+@extends('users.layouts.main', ['page' => 'lomba-detail'])
 
-@section('title', '')
+@section('title', 'Detail Lomba')
 
 @section('content')
+<main>
+    <section>
+        <a href="/" class="w-fit btn-secondary-small flex gap-1 items-center">
+            <x-phosphor-caret-left class="w-5 h-5"/>
+            <p>Kembali</p>
+        </a>
+        <img src="" alt="">
+    </section>
+    <section>
+        <div>
+            <div class="flex items-center gap-2">
+                <p class="tag">UI/UX</p>
+                <p class="tag">BC/BIC</p>
+                <p class="tag">CTF</p>
+            </div>
+            <h1>Hology 6.0</h1>
+
+        </div>
+    </section>
+</main>
     <main>
         <section id="main" class="mt-12 mx-24  ">
             <div class=" grid grid-cols-4 gap-4  ">
