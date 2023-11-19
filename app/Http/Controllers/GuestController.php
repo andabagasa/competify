@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Guest;
 use App\Models\Mahasiswa;
+use Illuminate\Support\Facades\DB;
 
 class GuestController extends Controller
 {
@@ -16,8 +17,14 @@ class GuestController extends Controller
             'password' => ['required'],
         ]);
 
+        $user = DB::table('guests')->where('email', $credentials['email'])->first();
+
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+
+            if ($user->guest_type == "Admin"){
+                return redirect()->intended('/admin');
+            }
 
             return redirect()->intended('/');
         }

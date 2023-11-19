@@ -11,11 +11,13 @@ class InformasiLomba extends Model
 
     protected $table = 'informasi_lombas';
     protected $fillable = [
+        'admin_id',
         'title',
         'description',
         'organizer_name',
         'reward',
-        'timeline',
+        'open_reg',
+        'close_reg',
         'term_and_condition',
         'poster',
         'contact'

@@ -3,6 +3,8 @@
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\InformasiLombaController;
+use App\Http\Middleware\Admin;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +35,11 @@ Route::view('/profile', 'users.profile');
 Route::view('/profile-edit', 'users.profile-edit');
 
 // Admin Route
-Route::view('/admin', 'admins.dashboard');
-Route::view('/admin/lomba', 'admins.lomba.lomba');
-Route::view('/admin/lomba-create', 'admins.lomba.lomba-create');
+Route::get('/admin/lomba', [InformasiLombaController::class, 'index']);
+Route::get('/admin/lomba-create', [InformasiLombaController::class, 'create']);
+Route::post('/admin/lomba-create', [InformasiLombaController::class, 'store']);
+
+Route::view('/admin', 'admins.dashboard')->middleware('admin');
+// Route::view('/admin/lomba', 'admins.lomba.lomba');
+// Route::view('/admin/lomba-create', 'admins.lomba.lomba-create');
 Route::view('/admin/lomba-update', 'admins.lomba.lomba-update');

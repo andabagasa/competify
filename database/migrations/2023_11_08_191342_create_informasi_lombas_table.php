@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('description', 255);
             $table->string('organizer_name', 100);
             $table->string('reward', 255);
-            $table->string('open_reg');
-            $table->string('close_reg');
+            $table->date('open_reg');
+            $table->date('close_reg');
             $table->string('term_and_condition', 255);
             $table->string('poster', 255);
             $table->string('contact', 100);
