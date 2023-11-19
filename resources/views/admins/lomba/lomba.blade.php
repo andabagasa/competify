@@ -25,39 +25,49 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($informasiLombas as $informasiLomba)
                 <tr>
                     <td class="table-body">
-                        <img src="" alt="" class="w-12 h-auto">
+                        <img src="{{ Storage::url($informasiLomba->poster) }}" class="w-12 h-auto">
                     </td>
-                    <td class="table-body">Hology 6.0</td>
+                    <td class="table-body">{{ $informasiLomba->title }}</td>
                     <td class="table-body">
-
-                    </td>
-                    <td class="table-body">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi molestiae repellendus quam suscipit, nulla ea non laudantium at modi dolorum iusto quas velit vitae nam iste officia assumenda quae libero.
-                    </td>
-                    <td class="table-body">
-                        FILKOM Universitas Brawijaya
+                        @foreach ($informasiLomba->InformasiLombaCategory as $category)
+                        {{ optional($category->Category)->name }},
+                        @endforeach
                     </td>
                     <td class="table-body">
-                        12/10/2023 - 16/10/2023
+                        {{ $informasiLomba->description }}
                     </td>
                     <td class="table-body">
-                        link
+                        {{ $informasiLomba->organizer_name }}
                     </td>
                     <td class="table-body">
-                        Juara 1 6.500.000
+                        {{ $informasiLomba->open_reg }} - {{ $informasiLomba->close_reg }}
                     </td>
                     <td class="table-body">
-                        0909039123
+                        {{ $informasiLomba->term_and_condition }}
+                    </td>
+                    <td class="table-body">
+                        {{ $informasiLomba->reward }}
+                    </td>
+                    <td class="table-body">
+                        {{ $informasiLomba->contact }}
                     </td>
                     <td class="table-body">
                         <div class="flex gap-4">
-                            <a href="/admin/lomba-update" class="w-fit bg-yellow-500 text-white text-center p-2 duration-100 rounded-lg cursor-pointer hover:bg-yellow-600"><x-phosphor-pencil-simple class="w-6 h-6"/></a>
-                            <a href="" class="w-fit bg-red-600 text-white text-center p-2 duration-100 rounded-lg cursor-pointer hover:bg-red-700"><x-phosphor-trash class="w-6 h-6"/></a>
+                            <a href="{{ route('admin.lomba.edit', ['id' => $informasiLomba->id_lomba]) }}" class="w-fit bg-yellow-500 text-white text-center p-2 duration-100 rounded-lg cursor-pointer hover:bg-yellow-600"><x-phosphor-pencil-simple class="w-6 h-6"/></a>
+                            <form action="{{ route('lomba.destroy', $informasiLomba->id_lomba) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this Lomba?')">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="w-fit bg-red-600 text-white text-center p-2 duration-100 rounded-lg cursor-pointer hover:bg-red-700">
+                                    <x-phosphor-trash class="w-6 h-6"/>
+                                </button>
+                            </form>
                         </div>
                     </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

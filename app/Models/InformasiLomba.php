@@ -10,6 +10,7 @@ class InformasiLomba extends Model
     use HasFactory;
 
     protected $table = 'informasi_lombas';
+    protected $primaryKey = 'id_lomba';
     protected $fillable = [
         'admin_id',
         'title',
@@ -30,6 +31,15 @@ class InformasiLomba extends Model
 
     public function InformasiLombaCategory()
     {
-        return $this->hasMany(InformasiLombaCategory::class);
+        return $this->hasMany(InformasiLombaCategory::class, 'id_lomba');
+    }
+
+    public function addCategories($categoryIds)
+    {
+        foreach ($categoryIds as $categoryId) {
+            $this->InformasiLombaCategory()->create([
+                'category_id' => $categoryId,
+            ]);
+        }
     }
 }

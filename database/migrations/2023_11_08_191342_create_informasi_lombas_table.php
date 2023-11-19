@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('informasi_lombas', function (Blueprint $table) {
             $table->id('id_lomba', 32)->unique();
-            $table->foreignId('admin_id', 32)->unique()->references('admin_id')->on('admins')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('admin_id', 32)->references('admin_id')->on('admins')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('title', 100);
             $table->string('description', 255);
             $table->string('organizer_name', 100);
