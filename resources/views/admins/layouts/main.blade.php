@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="{{asset('assets/favicon.ico')}}" type="image/x-icon">
 </head>
 <body>
-    <nav class="w-full h-fit bg-primary-300">
+    <nav class="w-full h-fit bg-primary-300 sticky top-0 z-50">
         <div class="flex justify-between items-center container mx-auto py-4">
             <img src="{{asset('assets/images/logo-white.svg')}}" alt="Logo Competify" class="h-12 w-auto">
             <div class="flex gap-16">

@@ -32,4 +32,3 @@ let swiperPartner = new Swiper('.swiper-partner', {
         prevEl: '.btn-prev-partner',
     },
 });
-
