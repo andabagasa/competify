@@ -3,41 +3,63 @@
 @section('title', 'Dashboard Lomba')
 
 @section('content')
-<div class="flex flex-col items-center justify-center gap-12 mt-12">
-    <h1 class="text-4xl font-lora font-bold">Daftar Lomba</h1>
-    <table class="table-fixed text-center">
-        <thead>
-        <tr>
-            <th class="border p-4 border-collapse border-primary-500 w-[200px] bg-primary-500 text-primary-50">Poster</th>
-            <th class="border p-4 border-collapse border-primary-500 w-[200px] bg-primary-500 text-primary-50">Nama Lomba</th>
-            <th class="border p-4 border-collapse border-primary-500 w-[200px] bg-primary-500 text-primary-50">Deskripsi</th>
-            <th class="border p-4 border-collapse border-primary-500 w-[200px] bg-primary-500 text-primary-50">Penyelenggara</th>
-            <th class="border p-4 border-collapse border-primary-500 w-[200px] bg-primary-500 text-primary-50">Reward</th>
-            <th class="border p-4 border-collapse border-primary-500 w-[400px] bg-primary-500 text-primary-50">Timeline</th>
-            <th class="border p-4 border-collapse border-primary-500 w-[400px] bg-primary-500 text-primary-50">Syarat & Ketentuan</th>
-        </tr>
-        </thead>
-        <tbody>
-            {{-- @foreach ($menus as $menu)
-            <tr class="">
-                <td class="border p-2  border-collapse border-primary-500">{{ $menu->name }}</td>
-                <td class="border p-2 border-collapse border-primary-500">{{ $menu->category->name }}</td>
-                <td class="border p-2 border-collapse border-primary-500 w-[200px]">{{ $menu->description }}</td>
-                <td class="border p-2 border-collapse border-primary-500">{{ $menu->price }}</td>
-                <td class="border p-2 border-collapse border-primary-500">
-                    <img class="ml-auto mr-auto" src="{{ asset('storage/' . $menu->image) }}" alt="{{ $menu->name }}" width="50" height="50">
-                </td>
-                <td class="border p-2 border-collapse border-primary-500">
-                <a class="text-base font-semibold text-primary-500 hover:text-primary-300 hover:duration-300 mx-8" href="/admin/menu/update/{{ $menu->id }}">
-                        Update
-                    </a>
-                    <a class="text-base font-semibold text-primary-500 hover:text-primary-300 hover:duration-300 mx-8" href="/admin/menu/delete/{{ $menu->id }}" data-confirm-delete="true">
-                        Hapus
-                    </a>
-                </td>
-            </tr>
-            @endforeach --}}
-        </tbody>
-    </table>
-</div>
+<main class="w-full flex flex-col justify-center items-center py-12 gap-12 container mx-auto">
+    <h1 class="text-5xl font-bold">Daftar Lomba</h1>
+    <div class="flex flex-col gap-6 justify-end items-end">
+        <a href="/admin/lomba-create" class="btn-primary-normal w-fit">
+            <p>Tambah Lomba</p>
+        </a>
+        <table class="w-full table-fixed">
+            <thead>
+                <tr>
+                    <th class="table-head">Poster Lomba</th>
+                    <th class="table-head">Nama Lomba</th>
+                    <th class="table-head">Kategori</th>
+                    <th class="table-head">Deskripsi</th>
+                    <th class="table-head w-auto">Pelaksana</th>
+                    <th class="table-head">Timeline</th>
+                    <th class="table-head">Syarat & Ketentuan</th>
+                    <th class="table-head">Reward</th>
+                    <th class="table-head">Kontak</th>
+                    <th class="table-head">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="table-body">
+                        <img src="" alt="" class="w-12 h-auto">
+                    </td>
+                    <td class="table-body">Hology 6.0</td>
+                    <td class="table-body">
+
+                    </td>
+                    <td class="table-body">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi molestiae repellendus quam suscipit, nulla ea non laudantium at modi dolorum iusto quas velit vitae nam iste officia assumenda quae libero.
+                    </td>
+                    <td class="table-body">
+                        FILKOM Universitas Brawijaya
+                    </td>
+                    <td class="table-body">
+                        12/10/2023 - 16/10/2023
+                    </td>
+                    <td class="table-body">
+                        link
+                    </td>
+                    <td class="table-body">
+                        Juara 1 6.500.000
+                    </td>
+                    <td class="table-body">
+                        0909039123
+                    </td>
+                    <td class="table-body">
+                        <div class="flex gap-4">
+                            <a href="/admin/lomba-update" class="w-fit bg-yellow-500 text-white text-center p-2 duration-100 rounded-lg cursor-pointer hover:bg-yellow-600"><x-phosphor-pencil-simple class="w-6 h-6"/></a>
+                            <a href="" class="w-fit bg-red-600 text-white text-center p-2 duration-100 rounded-lg cursor-pointer hover:bg-red-700"><x-phosphor-trash class="w-6 h-6"/></a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
 @endsection

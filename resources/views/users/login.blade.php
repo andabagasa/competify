@@ -17,9 +17,9 @@
             <form action="/login" method="post" class="w-full md:w-[360px] flex flex-col gap-1 mt-6">
                 @csrf
                 <label for="email" class="label-input">Email</label>
-                <input type="email" name="email" id="email" placeholder="Masukkan email anda" class="input-field">
+                <input type="email" name="email" id="email" placeholder="Masukkan email anda" class="input-field" required>
                 <label for="password" class="label-input mt-3">Password</label>
-                <input type="password" name="password" id="password" placeholder="Masukkan password anda" class="input-field">
+                <input type="password" name="password" id="password" placeholder="Masukkan password anda" class="input-field" required>
                 <button type="submit" class="btn-primary-normal mt-5">Masuk</button>
             </form>
             <p class="text-neutral-500 text-center">Belum punya akun? <a href="/register" class="font-semibold text-primary-300 hover:text-primary-400">Buat Akun</a> di sini.</p>

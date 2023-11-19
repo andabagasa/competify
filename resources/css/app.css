@@ -51,4 +51,12 @@
     .tag {
         @apply text-xs text-center font-semibold py-1 px-2 bg-primary-100 text-primary-300 rounded-full;
     }
+
+    .table-head {
+        @apply p-4 text-center font-bold bg-primary-300 border border-collapse text-white;
+    }
+
+    .table-body {
+        @apply p-4 border border-collapse bg-white align-top;
+    }
 }

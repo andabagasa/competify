@@ -6,7 +6,6 @@
     <main>
         <section id="main" class="mt-12 mx-24  ">
             <div class=" grid grid-cols-4 gap-4  ">
-
                 <main class=" col-span-2 ">
                     <img src="https://via.placeholder.com/300x240" alt="" class="w-full h-100 rounded-t-lg">
                     <div class="p-4 flex flex-col gap-2">
