@@ -7,7 +7,6 @@
     <title>Competify | @yield('title')</title>
     @vite(['resources/css/app.css', 'resources/js/app,js'])
     <link rel="shortcut icon" href="{{asset('assets/favicon.ico')}}" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
 </head>
 <body>
     <nav class="w-full h-fit bg-primary-300 sticky top-0 z-50">
