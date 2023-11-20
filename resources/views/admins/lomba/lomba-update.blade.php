@@ -10,9 +10,9 @@
         <label for="" class="label-input">Nama Lomba</label>
         <input type="text" name="" id="" class="input-field" placeholder="Masukkan nama lomba" required>
         <label for="" class="label-input mt-3">Kategori</label>
-        <select name="" id="" class="input-field" required>
-            <option value="">UI/UX</option>
-            <option value="">Business Case</option>
+        <select name="category" id="category" multiple required>
+            <option value="1">UI/UX</option>
+            <option value="2">Business Case</option>
         </select>
         <label for="" class="label-input mt-3">Deskripsi Lomba</label>
         <textarea name="" id="" placeholder="Masukkan deskripsi lomba" class="input-field h-60 resize-none" required></textarea>
@@ -42,4 +42,14 @@
         </div>
     </form>
 </main>
+<script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@2.0.0/dist/js/multi-select-tag.js"></script>
+<script>
+    new MultiSelectTag('category', {
+    rounded: true,
+    placeholder: 'Search',
+    onChange: function(values) {
+        console.log(values)
+    }
+})
+</script>
 @endsection
