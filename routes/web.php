@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GuestController;
@@ -35,14 +36,24 @@ Route::view('/profile', 'users.profile');
 Route::view('/profile-edit', 'users.profile-edit');
 
 // Admin Route
-Route::get('/admin/lomba', [InformasiLombaController::class, 'index']);
-Route::get('/admin/lomba-create', [InformasiLombaController::class, 'create']);
-Route::post('/admin/lomba-create', [InformasiLombaController::class, 'store']);
+Route::get('/admin/lomba', [InformasiLombaController::class, 'index'])->middleware('admin');
+Route::get('/admin/lomba-create', [InformasiLombaController::class, 'create'])->middleware('admin');
+Route::post('/admin/lomba-create', [InformasiLombaController::class, 'store'])->middleware('admin');
+Route::get('/admin/lomba-update/{id}', [InformasiLombaController::class, 'edit'])->name('admin.lomba.edit')->middleware('admin');
+Route::put('/admin/lomba-update/{id}', [InformasiLombaController::class, 'update'])->name('admin.lomba.update')->middleware('admin');
+Route::delete('/admin/lomba/{id}', [InformasiLombaController::class, 'destroy'])->name('lomba.destroy')->middleware('admin');
+
+Route::get('/admin/kategori', [CategoryController::class, 'index'])->middleware('admin');
+Route::get('/admin/kategori-create', [CategoryController::class, 'create'])->middleware('admin');
+Route::post('/admin/kategori-create', [CategoryController::class, 'store'])->middleware('admin');
+Route::get('/admin/kategori-update/{id}', [CategoryController::class, 'edit'])->name('admin.kategori.edit')->middleware('admin');
+Route::put('/admin/kategori-update/{id}', [CategoryController::class, 'update'])->name('admin.kategori.update')->middleware('admin');
+Route::delete('/admin/kategori/{id}', [CategoryController::class, 'destroy'])->name('kategori.destroy')->middleware('admin');
 
 Route::view('/admin', 'admins.dashboard')->middleware('admin');
 // Route::view('/admin/lomba', 'admins.lomba.lomba');
 // Route::view('/admin/lomba-create', 'admins.lomba.lomba-create');
-Route::view('/admin/lomba-update', 'admins.lomba.lomba-update');
-Route::view('/admin/kategori', 'admins.kategori.kategori');
-Route::view('/admin/kategori-create', 'admins.kategori.kategori-create');
-Route::view('/admin/kategori-update', 'admins.kategori.kategori-update');
+// Route::view('/admin/lomba-update', 'admins.lomba.lomba-update')->middleware('admin');
+// Route::view('/admin/kategori', 'admins.kategori.kategori')->middleware('admin');
+// Route::view('/admin/kategori-create', 'admins.kategori.kategori-create')->middleware('admin');
+// Route::view('/admin/kategori-update', 'admins.kategori.kategori-update')->middleware('admin');

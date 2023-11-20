@@ -18,13 +18,21 @@
             </thead>
             <tbody>
                 <tr>
-                    <td class="table-body">UI/UX</td>
+                    @foreach ($categories as $category)
+                    <td class="table-body">{{ $category->name }}</td>
                     <td class="table-body">
                         <div class="flex gap-4">
-                            <a href="/admin/kategori-update" class="w-fit bg-yellow-500 text-white text-center p-2 duration-100 rounded-lg cursor-pointer hover:bg-yellow-600"><x-phosphor-pencil-simple class="w-6 h-6"/></a>
-                            <a href="" class="w-fit bg-red-600 text-white text-center p-2 duration-100 rounded-lg cursor-pointer hover:bg-red-700"><x-phosphor-trash class="w-6 h-6"/></a>
+                            <a href="{{ route('admin.kategori.edit', ['id' => $category->category_id]) }}" class="w-fit bg-yellow-500 text-white text-center p-2 duration-100 rounded-lg cursor-pointer hover:bg-yellow-600"><x-phosphor-pencil-simple class="w-6 h-6"/></a>
+                            <form action="{{ route('kategori.destroy', $category->category_id) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this Kategori?')">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="w-fit bg-red-600 text-white text-center p-2 duration-100 rounded-lg cursor-pointer hover:bg-red-700">
+                                    <x-phosphor-trash class="w-6 h-6"/>
+                                </button>
+                            </form>
                         </div>
                     </td>
+                    @endforeach
                 </tr>
             </tbody>
         </table>

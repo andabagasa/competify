@@ -17,7 +17,7 @@
                 <a href="/admin/lomba" class="text-white font-semibold duration-100 hover:text-primary-100">Lomba</a>
                 <a href="/admin/kategori" class="text-white font-semibold duration-100 hover:text-primary-100">Kategori</a>
             </div>
-            <a href="" class="btn-primary-small bg-white text-primary-300 hover:bg-primary-100">Logout</a>
+            <a href="/logout" class="btn-primary-small bg-white text-primary-300 hover:bg-primary-100">Logout</a>
         </div>
     </nav>
     @yield('content')

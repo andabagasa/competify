@@ -22,6 +22,6 @@ class InformasiLombaCategory extends Model
 
     public function Category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'category_id');
     }
 }
