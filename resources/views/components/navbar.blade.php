@@ -12,7 +12,7 @@
             <p class="text-neutral-500">{{ Auth::user()->email }}</p>
         </div>
         <x-phosphor-caret-down id="caret" class="w-6 h-6"/>
-        <div id="dropdown" class="absolute top-20 right-0 bg-white border border-neutral-300 rounded-md shadow-lg z-10">
+        <div id="dropdown" class="hidden absolute top-20 right-0 bg-white border border-neutral-300 rounded-md shadow-lg z-10">
             <a href="/profile" class="flex justify-start items-center py-3 pl-4 pr-6 gap-4 hover:bg-primary-100">
                 <x-phosphor-user class="w-6 h-6"/>
                 <p>Profil Saya</p>

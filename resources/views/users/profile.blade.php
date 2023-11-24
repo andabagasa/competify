@@ -24,9 +24,15 @@
             <div class="flex justify-center">
                 <img class="w-[180px] h-[180px] rounded-full" src="https://via.placeholder.com/180x180" />
             </div>
-            <p class="text-zinc-600 text-base font-normal text-center mt-6"> Teknik Informatika - 2021</p>
-            <p class="text-black text-2xl font-bold text-center mt-2"> Anda Bagas Aprianto</p>
-            <p class="text-zinc-600 text-base font-normal text-center mt-2"> andabagas@email.com</p>
+            <p class="text-zinc-600 text-base font-normal text-center mt-6">
+                @if ($mahasiswa->nim == null)
+                Silahkan lengkapi Nomor Induk Mahasiswa 
+                @else
+                {{$mahasiswa->nim}}    
+                @endif
+            </p>
+            <p class="text-black text-2xl font-bold text-center mt-2">{{ $guests->name }}</p>
+            <p class="text-zinc-600 text-base font-normal text-center mt-2">{{ $guests->email }}</p>
             <div class="flex justify-center items-center gap-2 mt-2">
                 <p class="tag   text-xs text-center font-semibold py-1 px-2 bg-blue-100 text-blue-300 rounded-full">
                     UI/UX</p>
@@ -44,12 +50,13 @@
                 <div class="grid grid-cols-2 gap-4 mt-12 ">
                     <div class="p-6  rounded-2xl border-2 grid-cols-1 h-max ">
                         <h3 class="text-black text-2xl font-bold mb-8">Tentang Saya</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur. Placerat velit nulla ipsum amet sit. Massa neque
-                            aliquam eget viverra
-                            suspendisse. Eu elementum parturient maecenas sit ultrices cursus integer sit phasellus.
-                            Tincidunt laoreet id velit
-                            viverra massa suscipit tellus. Etiam sagittis porttitor neque accumsan a at fusce.
-                            Vestibulum malesuada eget sed massa</p>
+                        <p>
+                            @if ($mahasiswa->description == null)
+                            Silahkan lengkapi deskripsi diri    
+                            @else
+                            {{$mahasiswa->description}}    
+                            @endif
+                        </p>
                     </div>
                     <div class="p-6 flex flex-col gap-6 rounded-2xl border-2 grid-cols-1">
                         <h3 class="text-black text- 2xl font-bold w-full">Tentang Saya</h3>
@@ -60,7 +67,7 @@
                             </div>
                             <div>
                                 <h4 class="text-black text-lg font-bold">Whatsapp</h4>
-                                <p class="text-zinc-600 text-base font-normal">0812345567</p>
+                                <p class="text-zinc-600 text-base font-normal">{{$mahasiswa->no_tlp}}</p>
                             </div>
                         </div>
                         <div class="flex flex-wrap gap-6">
@@ -71,7 +78,13 @@
                             </div>
                             <div>
                                 <h4 class="text-black text-lg font-bold">Instagram</h4>
-                                <p class="text-zinc-600 text-base font-normal">@anda.bagas_</p>
+                                <p class="text-zinc-600 text-base font-normal">                            
+                                    @if ($mahasiswa->acc_instagram == null)
+                                    Silahkan lengkapi akun Instagram    
+                                    @else
+                                    {{$mahasiswa->acc_instagram}}    
+                                    @endif
+                                </p>
                             </div>
                         </div>
                         <div class="flex flex-wrap gap-6">
@@ -81,7 +94,13 @@
                             </div>
                             <div>
                                 <h4 class="text-black text-lg font-bold">LinkedIn</h4>
-                                <p class="text-zinc-600 text-base font-normal">Anda Bagas Aprianto</p>
+                                <p class="text-zinc-600 text-base font-normal">
+                                    @if ($mahasiswa->acc_linkedin == null)
+                                    Silahkan lengkapi akun LinkedIn    
+                                    @else
+                                    {{$mahasiswa->acc_linkedin}}    
+                                    @endif
+                                </p>
                             </div>
                         </div>
 
@@ -94,7 +113,7 @@
             <button class="flex mr-2 grow-0  self-center justify-center w-[40%] h-12  btn-primary-normal"><img
                     src="asset/file-text-fill.svg" alt="" class="w-4 h-4 self-center hidden "><span
                     class="text-sm self-center">
-                    Edit Profile</span></button>
+                    Edit Profile</span></buttonh>
 
         </div>
         <!-- main bot -->

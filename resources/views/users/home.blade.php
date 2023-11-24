@@ -29,32 +29,36 @@
         </div>
         <div class="swiper swiper-lomba">
             <div class="flex swiper-wrapper">
-                {{-- @foreach ( as ) --}}
+                @foreach ($informasiLombas as $informasiLomba)
                     <div class="w-full bg-white rounded-lg swiper-slide">
-                        <img src="{{asset('')}}" alt="" class="w-full h-40 rounded-t-lg">
+                        <img src="{{ Storage::url($informasiLomba->poster) }}" alt="" class="object-cover w-full h-40 rounded-t-lg">
                         <div class="p-4 flex flex-col gap-2">
                             <div class="flex items-center gap-2">
-                                <p class="tag">UI/UX</p>
-                                <p class="tag">BC/BIC</p>
-                                <p class="tag">CTF</p>
+                                @foreach ($informasiLomba->InformasiLombaCategory->take(3) as $category)
+                                <p class="tag">{{ Str::of(optional($category->Category)->name)->limit(14) }}</p>
+                                @if($loop->iteration === 3 && $informasiLomba->InformasiLombaCategory->count() > 3)
+                                <p class="tag">...</p>
+                                @break
+                                @endif
+                                @endforeach
                             </div>
-                            <div class="flex flex-col gap-1">
-                                <h3 class="text-2xl font-bold">Hology 6.0</h3>
-                                <p class="text-sm text-neutral-500">FILKOM Universitas Brawijaya</p>
+                            <div class="w-full flex flex-col gap-1">
+                                <h3 class="text-2xl w-full font-bold">{{ Str::of($informasiLomba->title)->limit(20) }}</h3>
+                                <p class="text-sm text-neutral-500">{{ $informasiLomba->organizer_name }}</p>
                             </div>
                             <div class="flex flex-col gap-2 p-2 rounded bg-primary-100">
                                 <div class="flex justify-between items-center text-primary-300">
                                     <p>Open Registration</p>
-                                    <p class="font-semibold">10/8/2023</p>
+                                    <p class="font-semibold">{{ $informasiLomba->open_reg }}</p>
                                 </div>
                                 <div class="flex justify-between items-center text-red-500">
                                     <p>Close Registration</p>
-                                    <p class="font-semibold">31/8/2023</p>
+                                    <p class="font-semibold">{{ $informasiLomba->close_reg }}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                {{-- @endforeach --}}
+                @endforeach
             </div>
         </div>
     </section>

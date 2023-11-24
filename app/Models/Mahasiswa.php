@@ -10,6 +10,7 @@ class Mahasiswa extends Model
     use HasFactory;
 
     protected $table = 'mahasiswas';
+    protected $primaryKey = 'mahasiswa_id';
     protected $fillable = [
         'guest_id',
         'nim',
@@ -20,7 +21,7 @@ class Mahasiswa extends Model
         'photo'
     ];
 
-    public function Guest()
+    public function guest()
     {
         return $this->belongsTo(Guest::class);
     }

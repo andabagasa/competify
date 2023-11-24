@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\InformasiLombaController;
+use App\Http\Controllers\MahasiswaController;
 use App\Http\Middleware\Admin;
 
 /*
@@ -20,6 +21,8 @@ use App\Http\Middleware\Admin;
 
 // Mahasiswa Route
 Route::get('/', [DashboardController::class, 'index']);
+Route::get('/lomba', [DashboardController::class, 'showLombas']);
+Route::get('/profile', [MahasiswaController::class, 'profile']);
 
 Route::get('/login', [GuestController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [GuestController::class, 'login']);
@@ -28,11 +31,11 @@ Route::get('/logout', [GuestController::class, 'logout'])->middleware('auth');
 Route::get('/register', [GuestController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [GuestController::class, 'store']);
 
-Route::view('/lomba', 'users.lomba');
+// Route::view('/lomba', 'users.lomba');
 Route::view('/lomba-details', 'users.lomba-details');
 Route::view('/partner', 'users.partner');
 Route::view('/partner-details', 'users.partner-details');
-Route::view('/profile', 'users.profile');
+// Route::view('/profile', 'users.profile');
 Route::view('/profile-edit', 'users.profile-edit');
 
 // Admin Route
@@ -51,9 +54,3 @@ Route::put('/admin/kategori-update/{id}', [CategoryController::class, 'update'])
 Route::delete('/admin/kategori/{id}', [CategoryController::class, 'destroy'])->name('kategori.destroy')->middleware('admin');
 
 Route::view('/admin', 'admins.dashboard')->middleware('admin');
-// Route::view('/admin/lomba', 'admins.lomba.lomba');
-// Route::view('/admin/lomba-create', 'admins.lomba.lomba-create');
-// Route::view('/admin/lomba-update', 'admins.lomba.lomba-update')->middleware('admin');
-// Route::view('/admin/kategori', 'admins.kategori.kategori')->middleware('admin');
-// Route::view('/admin/kategori-create', 'admins.kategori.kategori-create')->middleware('admin');
-// Route::view('/admin/kategori-update', 'admins.kategori.kategori-update')->middleware('admin');
