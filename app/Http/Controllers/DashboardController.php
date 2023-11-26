@@ -14,20 +14,10 @@ class DashboardController extends Controller
         $informasiLombas = InformasiLomba::all();
         $categories = Category::all();
 
-        $user = Auth::user();
-        $mahasiswa = null;
-        $guest = null;
+        // Get all Mahasiswa records with their corresponding Guest data
+        $mahasiswas = Mahasiswa::with('guest')->get();
 
-        if ($user) {
-            $guest = $user;
-
-            if ($user->guest_type === 'Mahasiswa') {
-                $mahasiswa = Mahasiswa::where('guest_id', $user->guest_id)->first();
-            }
-        }
-
-        return view('users.home', compact('informasiLombas', 'categories', 'mahasiswa', 'guest'));
-    
+        return view('users.home', compact('informasiLombas', 'categories', 'mahasiswas'));
     }
 
     public function showLombas(){

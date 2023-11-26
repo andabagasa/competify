@@ -22,24 +22,28 @@
                 </div>
             </div>
             <div class="flex justify-center">
-                <img class="w-[180px] h-[180px] rounded-full" src="https://via.placeholder.com/180x180" />
+                <img class="object-cover w-[180px] h-[180px] rounded-full" src="{{ Storage::url($mahasiswa->photo) }}" />
             </div>
             <p class="text-zinc-600 text-base font-normal text-center mt-6">
                 @if ($mahasiswa->nim == null)
-                Silahkan lengkapi Nomor Induk Mahasiswa 
+                (Silahkan lengkapi Nomor Induk Mahasiswa) 
                 @else
                 {{$mahasiswa->nim}}    
+                @endif
+            </p>
+            <p class="text-zinc-600 text-base font-normal text-center mt-1">
+                @if ($mahasiswa->prodi == null && $mahasiswa->angkatan == null)
+                (Silahkan lengkapi program studi dan angkatan)
+                @else
+                {{$mahasiswa->prodi}} - {{$mahasiswa->angkatan}}    
                 @endif
             </p>
             <p class="text-black text-2xl font-bold text-center mt-2">{{ $guests->name }}</p>
             <p class="text-zinc-600 text-base font-normal text-center mt-2">{{ $guests->email }}</p>
             <div class="flex justify-center items-center gap-2 mt-2">
-                <p class="tag   text-xs text-center font-semibold py-1 px-2 bg-blue-100 text-blue-300 rounded-full">
-                    UI/UX</p>
-                <p class="tag text-xs text-center font-semibold py-1 px-2 bg-blue-100 text-blue-300 rounded-full">BC/BIC
-                </p>
-                <p class="tag text-xs text-center font-semibold py-1 px-2 bg-blue-100 text-blue-300 rounded-full">CTF
-                </p>
+                @foreach ($mahasiswa->MahasiswaCategory as $category)
+                <p class="tag">{{ ($category->Category)->name }}</p>
+                @endforeach
             </div>
         </div>
         <!-- main top -->
@@ -52,7 +56,7 @@
                         <h3 class="text-black text-2xl font-bold mb-8">Tentang Saya</h3>
                         <p>
                             @if ($mahasiswa->description == null)
-                            Silahkan lengkapi deskripsi diri    
+                            (Silahkan lengkapi deskripsi diri)    
                             @else
                             {{$mahasiswa->description}}    
                             @endif
@@ -80,7 +84,7 @@
                                 <h4 class="text-black text-lg font-bold">Instagram</h4>
                                 <p class="text-zinc-600 text-base font-normal">                            
                                     @if ($mahasiswa->acc_instagram == null)
-                                    Silahkan lengkapi akun Instagram    
+                                    (Silahkan lengkapi akun Instagram)    
                                     @else
                                     {{$mahasiswa->acc_instagram}}    
                                     @endif
@@ -96,7 +100,7 @@
                                 <h4 class="text-black text-lg font-bold">LinkedIn</h4>
                                 <p class="text-zinc-600 text-base font-normal">
                                     @if ($mahasiswa->acc_linkedin == null)
-                                    Silahkan lengkapi akun LinkedIn    
+                                    (Silahkan lengkapi akun LinkedIn)    
                                     @else
                                     {{$mahasiswa->acc_linkedin}}    
                                     @endif
@@ -110,10 +114,9 @@
         </div>
 
         <div class="flex justify-center my-12">
-            <button class="flex mr-2 grow-0  self-center justify-center w-[40%] h-12  btn-primary-normal"><img
-                    src="asset/file-text-fill.svg" alt="" class="w-4 h-4 self-center hidden "><span
-                    class="text-sm self-center">
-                    Edit Profile</span></buttonh>
+            <a href="{{ route('profile.edit', ['id' => $mahasiswa->mahasiswa_id]) }}" class="flex mr-2 grow-0  self-center justify-center w-[40%] h-12  btn-primary-normal"><img
+                    src="asset/file-text-fill.svg" alt="" class="w-4 h-4 self-center hidden ">
+                    Edit Profile</a>
 
         </div>
         <!-- main bot -->

@@ -14,6 +14,8 @@ class Mahasiswa extends Model
     protected $fillable = [
         'guest_id',
         'nim',
+        'prodi',
+        'angkatan',
         'description',
         'no_tlp',
         'acc_linkedin',
@@ -23,11 +25,20 @@ class Mahasiswa extends Model
 
     public function guest()
     {
-        return $this->belongsTo(Guest::class);
+        return $this->belongsTo(Guest::class, 'guest_id');
     }
 
     public function MahasiswaCategory()
     {
-        return $this->hasMany(MahasiswaCategory::class);
+        return $this->hasMany(MahasiswaCategory::class, 'mahasiswa_id');
+    }
+
+    public function addCategories($categoryIds)
+    {
+        foreach ($categoryIds as $categoryId) {
+            $this->MahasiswaCategory()->create([
+                'category_id' => $categoryId,
+            ]);
+        }
     }
 }

@@ -23,6 +23,8 @@ use App\Http\Middleware\Admin;
 Route::get('/', [DashboardController::class, 'index']);
 Route::get('/lomba', [DashboardController::class, 'showLombas']);
 Route::get('/profile', [MahasiswaController::class, 'profile']);
+Route::get('/profile-edit/{id}', [MahasiswaController::class, 'edit'])->name('profile.edit');
+Route::put('/profile-edit/{id}', [MahasiswaController::class, 'update'])->name('profile.update');
 
 Route::get('/login', [GuestController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [GuestController::class, 'login']);
@@ -36,7 +38,7 @@ Route::view('/lomba-details', 'users.lomba-details');
 Route::view('/partner', 'users.partner');
 Route::view('/partner-details', 'users.partner-details');
 // Route::view('/profile', 'users.profile');
-Route::view('/profile-edit', 'users.profile-edit');
+// Route::view('/profile-edit', 'users.profile-edit');
 
 // Admin Route
 Route::get('/admin/lomba', [InformasiLombaController::class, 'index'])->middleware('admin');

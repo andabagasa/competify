@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_lomba', 32)->unique();
             $table->foreignId('admin_id', 32)->references('admin_id')->on('admins')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('title', 100);
-            $table->string('description', 255);
+            $table->text('description');
             $table->string('organizer_name', 100);
             $table->string('reward', 255);
             $table->date('open_reg');

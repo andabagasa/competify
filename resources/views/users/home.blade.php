@@ -37,7 +37,7 @@
                                 @foreach ($informasiLomba->InformasiLombaCategory->take(3) as $category)
                                 <p class="tag">{{ Str::of(optional($category->Category)->name)->limit(14) }}</p>
                                 @if($loop->iteration === 3 && $informasiLomba->InformasiLombaCategory->count() > 3)
-                                <p class="tag">...</p>
+                                <p class="tag/profile-edit">...</p>
                                 @break
                                 @endif
                                 @endforeach
@@ -75,20 +75,26 @@
         </div>
         <div class="swiper swiper-partner">
             <div class="flex swiper-wrapper">
-                {{-- @foreach ( as ) --}}
+                @foreach ($mahasiswas as $mahasiswa)
                     <div class="w-full bg-white rounded-lg swiper-slide">
-                        <img src="{{asset('')}}" alt="" class="w-full h-40 rounded-t-lg">
+                        <img src="{{ Storage::url($mahasiswa->photo) }}" alt="" class="object-cover w-full h-40 rounded-t-lg">
                         <div class="p-4 flex flex-col gap-2">
                             <div class="flex items-center gap-2">
-                                <p class="tag">UI/UX</p>
+                                @foreach ($mahasiswa->MahasiswaCategory->take(3) as $category)
+                                <p class="tag">{{ Str::of(optional($category->Category)->name)->limit(14) }}</p>
+                                @if($loop->iteration === 3 && $mahasiswa->MahasiswaCategory->count() > 3)
+                                <p class="tag/profile-edit">...</p>
+                                @break
+                                @endif
+                                @endforeach
                             </div>
                             <div class="flex flex-col gap-1">
-                                <h3 class="text-2xl font-bold">Rayhan Wahyu T</h3>
-                                <p class="text-sm text-neutral-500">Teknik Informatika - 2021</p>
+                                <h3 class="text-2xl font-bold">{{ Str::of($mahasiswa->guest->name)->limit(16) }}</h3>
+                                <p class="text-sm text-neutral-500">{{ $mahasiswa->prodi }} - {{ $mahasiswa->angkatan }}</p>
                             </div>
                         </div>
                     </div>
-                {{-- @endforeach --}}
+                @endforeach
             </div>
         </div>
     </section>
