@@ -3,125 +3,91 @@
 @section('title', 'Profile')
 
 @section('content')
-<main>
-    <!-- Main -->
-    <section class="w-full  items-center mt-6 justify-between container mx-auto">
-        <!-- button back -->
-        <a href="/" class="w-fit btn-secondary-small absolute top-24 flex gap-1 items-center">
-            <x-phosphor-caret-left class="w-5 h-5" />
-            <p>Kembali</p>
-        </a>
-        <!-- button back -->
-
-        <!-- main top -->
-        <div>
-            <div class="max-w-full px-4  ">
-                <div class="max-w-xl mx-auto text-center mb-12">
-                    <!-- <h4 class="font-semibold  text-primary text-xl  mb-2 max-w-xl">Expereinced</h4> -->
-                    <h2 class="text-center text-black text-4xl font-bold">Profil</h2>
-                </div>
+<main class="container mx-auto">
+    <a href="/" class="w-fit btn-secondary-small flex gap-1 items-center absolute top-24">
+        <x-phosphor-caret-left class="w-5 h-5"/>
+        <p>Kembali</p>
+    </a>
+    <div class="flex flex-col justify-center items-center gap-12 pt-6 pb-20">
+        <h1 class="text-4xl font-bold">Profil Saya</h1>
+        <div class="flex flex-col gap-6 justify-center items-center">
+            @if ($mahasiswa->photo == null)
+            <span class="p-[42px] rounded-full bg-primary-100 text-primary-300">
+                <x-phosphor-user-circle class="w-24 h-24"/>
+            </span>
+            @else
+            <img src="{{ Storage::url($mahasiswa->photo) }}" alt="" class="object-cover w-[180px] h-[180px] rounded-full">
+            @endif
+            <div class="flex flex-col gap-2 justify-center items-center">
+                <p class="text-neutral-500">
+                    @if ($mahasiswa->prodi == null && $mahasiswa->angkatan == null)
+                        Program Studi - Angkatan
+                    @else
+                        {{ $mahasiswa->prodi }} - {{ $mahasiswa->angkatan }}
+                    @endif
+                </p>
+                <h2 class="font-bold text-2xl">{{ $guests->name }}</h2>
+                <p class="text-neutral-500">
+                    @if ($mahasiswa->nim == null)
+                        NIM
+                    @else
+                        {{ $mahasiswa->nim }}
+                    @endif
+                </p>
             </div>
-            <div class="flex justify-center">
-                <img class="object-cover w-[180px] h-[180px] rounded-full" src="{{ Storage::url($mahasiswa->photo) }}" />
-            </div>
-            <p class="text-zinc-600 text-base font-normal text-center mt-6">
-                @if ($mahasiswa->nim == null)
-                (Silahkan lengkapi Nomor Induk Mahasiswa) 
-                @else
-                {{$mahasiswa->nim}}    
-                @endif
-            </p>
-            <p class="text-zinc-600 text-base font-normal text-center mt-1">
-                @if ($mahasiswa->prodi == null && $mahasiswa->angkatan == null)
-                (Silahkan lengkapi program studi dan angkatan)
-                @else
-                {{$mahasiswa->prodi}} - {{$mahasiswa->angkatan}}    
-                @endif
-            </p>
-            <p class="text-black text-2xl font-bold text-center mt-2">{{ $guests->name }}</p>
-            <p class="text-zinc-600 text-base font-normal text-center mt-2">{{ $guests->email }}</p>
-            <div class="flex justify-center items-center gap-2 mt-2">
-                @foreach ($mahasiswa->MahasiswaCategory as $category)
-                <p class="tag">{{ ($category->Category)->name }}</p>
-                @endforeach
-            </div>
+            <a href="{{ route('profile.edit', ['id' => $mahasiswa->mahasiswa_id]) }}" class="btn-primary-normal">Edit Profil</a>
         </div>
-        <!-- main top -->
-        <!-- main bot -->
-
-        <div>
-            <div class="container">
-                <div class="grid grid-cols-2 gap-4 mt-12 ">
-                    <div class="p-6  rounded-2xl border-2 grid-cols-1 h-max ">
-                        <h3 class="text-black text-2xl font-bold mb-8">Tentang Saya</h3>
-                        <p>
-                            @if ($mahasiswa->description == null)
-                            (Silahkan lengkapi deskripsi diri)    
-                            @else
-                            {{$mahasiswa->description}}    
-                            @endif
-                        </p>
+        <div class="flex gap-6 w-full">
+            <div class="w-1/2 p-6 bg-white border border-neutral-300 rounded-2xl flex flex-col gap-4">
+                <h2 class="text-2xl font-bold">Tentang Diri</h2>
+                <p class="text-neutral-500">
+                    @if ($mahasiswa->description == null)
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum enim delectus nulla ab ipsam. Accusamus fuga beatae suscipit, laudantium ipsam temporibus odio ullam nam similique facilis eveniet repellendus inventore natus!
+                    @else
+                    {{ $mahasiswa->description }}
+                    @endif
+                </p>
+            </div>
+            <div class="w-1/2 flex flex-col gap-6">
+                <div class="p-6 bg-white border border-neutral-300 rounded-2xl flex flex-col gap-4">
+                    <h2 class="text-2xl font-bold">Minat</h2>
+                    <div class="w-full flex flex-wrap gap-2">
+                        @foreach ($mahasiswa->MahasiswaCategory as $category)
+                        <p class="tag">{{ ($category->Category)->name }}</p>
+                        @endforeach
                     </div>
-                    <div class="p-6 flex flex-col gap-6 rounded-2xl border-2 grid-cols-1">
-                        <h3 class="text-black text- 2xl font-bold w-full">Tentang Saya</h3>
-                        <div class="flex flex-wrap gap-6">
-                            <div
-                                class="w-12 h-12 p-3 bg-violet-100 rounded-lg justify-center items-center gap-2.5 inline-flex">
-                                <img src="{{ asset('assets/images/mdi_whatsapp.svg') }}" class="w-6 h-6" alt="">
-                            </div>
-                            <div>
-                                <h4 class="text-black text-lg font-bold">Whatsapp</h4>
-                                <p class="text-zinc-600 text-base font-normal">{{$mahasiswa->no_tlp}}</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-wrap gap-6">
-                            <div
-                                class="w-12 h-12 p-3 bg-violet-100 rounded-lg justify-center items-center gap-2.5 inline-flex">
-                                <img src="{{ asset('assets/images/mdi_instagram.svg') }}" class="w-6 h-6"
-                                    alt="">
-                            </div>
-                            <div>
-                                <h4 class="text-black text-lg font-bold">Instagram</h4>
-                                <p class="text-zinc-600 text-base font-normal">                            
-                                    @if ($mahasiswa->acc_instagram == null)
-                                    (Silahkan lengkapi akun Instagram)    
-                                    @else
-                                    {{$mahasiswa->acc_instagram}}    
-                                    @endif
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex flex-wrap gap-6">
-                            <div
-                                class="w-12 h-12 p-3 bg-violet-100 rounded-lg justify-center items-center gap-2.5 inline-flex">
-                                <img src="{{ asset('assets/images/mdi_linkedin.svg') }}" class="w-6 h-6" alt="">
-                            </div>
-                            <div>
-                                <h4 class="text-black text-lg font-bold">LinkedIn</h4>
-                                <p class="text-zinc-600 text-base font-normal">
-                                    @if ($mahasiswa->acc_linkedin == null)
-                                    (Silahkan lengkapi akun LinkedIn)    
-                                    @else
-                                    {{$mahasiswa->acc_linkedin}}    
-                                    @endif
-                                </p>
-                            </div>
-                        </div>
-
+                </div>
+                <div class="p-6 bg-white border border-neutral-300 rounded-2xl flex flex-col gap-4">
+                    <h2 class="text-2xl font-bold">Kontak</h2>
+                    <div class="flex gap-6">
+                        <a href="https://wa.me/{{ $mahasiswa->no_tlp }}" target="_blank" class="flex flex-col gap-2 justify-center items-center">
+                            <span class="p-4 bg-primary-100 rounded-lg text-primary-300">
+                                <x-phosphor-whatsapp-logo class="w-8 h-8"/>
+                            </span>
+                            <p class="font-medium">Whatsapp</p>
+                        </a>
+                        <a href="{{ $mahasiswa->acc_linkedin }}" target="_blank" class="flex flex-col gap-2 justify-center items-center">
+                            <span class="p-4 bg-primary-100 rounded-lg text-primary-300">
+                                <x-phosphor-linkedin-logo class="w-8 h-8"/>
+                            </span>
+                            <p class="font-medium">LinkedIn</p>
+                        </a>
+                        <a href="{{ $mahasiswa->instagram }}" target="_blank" class="flex flex-col gap-2 justify-center items-center">
+                            <span class="p-4 bg-primary-100 rounded-lg text-primary-300">
+                                <x-phosphor-instagram-logo class="w-8 h-8"/>
+                            </span>
+                            <p class="font-medium">Instagram</p>
+                        </a>
+                        <a href="mailto:{{ $guests->email }}" target="_blank" class="flex flex-col gap-2 justify-center items-center">
+                            <span class="p-4 bg-primary-100 rounded-lg text-primary-300">
+                                <x-phosphor-envelope class="w-8 h-8"/>
+                            </span>
+                            <p class="font-medium">Email</p>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="flex justify-center my-12">
-            <a href="{{ route('profile.edit', ['id' => $mahasiswa->mahasiswa_id]) }}" class="flex mr-2 grow-0  self-center justify-center w-[40%] h-12  btn-primary-normal"><img
-                    src="asset/file-text-fill.svg" alt="" class="w-4 h-4 self-center hidden ">
-                    Edit Profile</a>
-
-        </div>
-        <!-- main bot -->
-    </section>
-    <!-- Main -->
+    </div>
 </main>
-
 @endsection
