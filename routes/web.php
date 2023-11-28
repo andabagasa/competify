@@ -21,7 +21,8 @@ use App\Http\Middleware\Admin;
 
 // Mahasiswa Route
 Route::get('/', [DashboardController::class, 'index']);
-Route::get('/lomba', [DashboardController::class, 'showLombas']);
+Route::get('/lomba', [DashboardController::class, 'showLombas'])->name('show.lombas');
+Route::get('/partner', [DashboardController::class, 'showPartners'])->name('show.partners');
 Route::get('/profile', [MahasiswaController::class, 'profile']);
 Route::get('/profile-edit/{id}', [MahasiswaController::class, 'edit'])->name('profile.edit');
 Route::put('/profile-edit/{id}', [MahasiswaController::class, 'update'])->name('profile.update');
@@ -35,7 +36,7 @@ Route::post('/register', [GuestController::class, 'store']);
 
 // Route::view('/lomba', 'users.lomba');
 Route::view('/lomba-details', 'users.lomba-details');
-Route::view('/partner', 'users.partner');
+// Route::view('/partner', 'users.partner');
 Route::view('/partner-details', 'users.partner-details');
 // Route::view('/profile', 'users.profile');
 // Route::view('/profile-edit', 'users.profile-edit');

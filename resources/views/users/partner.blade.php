@@ -38,34 +38,16 @@
 
                     <div class="flex flex-wrap  ">
                         <p class="text-black text-base font-semibold mt-7 mb-4 w-full">Keminatan</p>
-                        <div class="flex flex-wrap w-full mt-2 ">
-                            <input type="checkbox" id="myCheckbox" class="">
-                            <p class="pl-2 text-black text-sm font-normal">UI/UX</p>
-                        </div>
-                        <div class="flex flex-wrap w-full mt-2 ">
-                            <input type="checkbox" id="myCheckbox" class="">
-                            <p class="pl-2 text-black text-sm font-normal">BC/BIC</p>
-                        </div>
-                        <div class="flex flex-wrap w-full mt-2 ">
-                            <input type="checkbox" id="myCheckbox" class="">
-                            <p class="pl-2 text-black text-sm font-normal">CTF</p>
-                        </div>
-                        <div class="flex flex-wrap w-full mt-2 ">
-                            <input type="checkbox" id="myCheckbox" class="">
-                            <p class="pl-2 text-black text-sm font-normal">Software Development</p>
-                        </div>
-                        <div class="flex flex-wrap w-full mt-2 ">
-                            <input type="checkbox" id="myCheckbox" class="">
-                            <p class="pl-2 text-black text-sm font-normal">Poster</p>
-                        </div>
-                        <div class="flex flex-wrap w-full mt-2 ">
-                            <input type="checkbox" id="myCheckbox" class="">
-                            <p class="pl-2 text-black text-sm font-normal">Essay</p>
-                        </div>
-                        <div class="flex flex-wrap w-full mt-2 ">
-                            <input type="checkbox" id="myCheckbox" class="">
-                            <p class="pl-2 text-black text-sm font-normal">Debat</p>
-                        </div>
+                        <form action="{{ route('show.partners') }}" method="GET">
+                            @foreach ($categories as $category)
+                           <div class="flex flex-wrap w-full mt-2">
+                               <input type="checkbox" name="categories[]" value="{{ $category->category_id }}" id="category_{{ $category->category_id }}" class=""
+                                   {{ in_array($category->category_id, request('categories', [])) ? 'checked' : '' }}>
+                               <label for="category_{{ $category->category_id }}" class="pl-2 text-black text-sm font-normal">{{ $category->name }}</label>
+                           </div>
+                           @endforeach
+                           <button type="submit" class="bg-primary-300 text-white px-4 py-2 rounded-lg mt-4">Filter</button>
+                       </form>
                     </div>
                 </div>
 
@@ -82,9 +64,10 @@
                                         stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                 </svg>
                             </div>
-                            <input type="search" id="default-search"
-                                class="block w-full py-3 px-6 ps-10 text-neutral-400 text-base font-normal rounded-lg "
-                                placeholder="Cari Mentor" required>
+                            <form action="{{ route('show.partners') }}" method="GET">
+                                <input type="search" name="query" id="default-search" class="block w-full py-3 px-6 ps-10 text-neutral-400 text-base font-normal rounded-lg" placeholder="Cari Partner">
+                                <button type="submit"></button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -93,132 +76,28 @@
                 <!-- carousel -->
                 <div class="mt-6 mb-12">
                     <div class="grid grid-cols-3 gap-4">
-                        <div class="bg-white rounded-lg">
-                            <img src="https://via.placeholder.com/300x240" alt=""
-                                class="w-full h-40 rounded-t-lg">
+                        @foreach ($mahasiswas as $mahasiswa)
+                        <div class="w-full bg-white rounded-lg swiper-slide">
+                            <img src="{{ Storage::url($mahasiswa->photo) }}" alt="" class="object-cover w-full h-40 rounded-t-lg">
                             <div class="p-4 flex flex-col gap-2">
                                 <div class="flex items-center gap-2">
-                                    <p class="tag">UI/UX</p>
+                                    @foreach ($mahasiswa->MahasiswaCategory->take(3) as $category)
+                                    <p class="tag">{{ Str::of(optional($category->Category)->name)->limit(14) }}</p>
+                                    @if($loop->iteration === 3 && $mahasiswa->MahasiswaCategory->count() > 3)
+                                    <p class="tag/profile-edit">...</p>
+                                    @break
+                                    @endif
+                                    @endforeach
                                 </div>
                                 <div class="flex flex-col gap-1">
-                                    <h3 class="text-2xl font-bold">Rayhan Wahyu T</h3>
-                                    <p class="text-sm text-neutral-500">Teknik Informatika - 2021</p>
+                                    <h3 class="text-2xl font-bold">{{ Str::of($mahasiswa->guest->name)->limit(16) }}</h3>
+                                    <p class="text-sm text-neutral-500">{{ $mahasiswa->prodi }} - {{ $mahasiswa->angkatan }}</p>
                                 </div>
                             </div>
-
                         </div>
-                        <div class="bg-white rounded-lg">
-                            <img src="https://via.placeholder.com/300x240" alt=""
-                                class="w-full h-40 rounded-t-lg">
-                            <div class="p-4 flex flex-col gap-2">
-                                <div class="flex items-center gap-2">
-                                    <p class="tag">UI/UX</p>
-                                </div>
-                                <div class="flex flex-col gap-1">
-                                    <h3 class="text-2xl font-bold">Rayhan Wahyu T</h3>
-                                    <p class="text-sm text-neutral-500">Teknik Informatika - 2021</p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="bg-white rounded-lg">
-                            <img src="https://via.placeholder.com/300x240" alt=""
-                                class="w-full h-40 rounded-t-lg">
-                            <div class="p-4 flex flex-col gap-2">
-                                <div class="flex items-center gap-2">
-                                    <p class="tag">UI/UX</p>
-                                </div>
-                                <div class="flex flex-col gap-1">
-                                    <h3 class="text-2xl font-bold">Rayhan Wahyu T</h3>
-                                    <p class="text-sm text-neutral-500">Teknik Informatika - 2021</p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="bg-white rounded-lg">
-                            <img src="https://via.placeholder.com/300x240" alt=""
-                                class="w-full h-40 rounded-t-lg">
-                            <div class="p-4 flex flex-col gap-2">
-                                <div class="flex items-center gap-2">
-                                    <p class="tag">UI/UX</p>
-                                </div>
-                                <div class="flex flex-col gap-1">
-                                    <h3 class="text-2xl font-bold">Rayhan Wahyu T</h3>
-                                    <p class="text-sm text-neutral-500">Teknik Informatika - 2021</p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="bg-white rounded-lg">
-                            <img src="https://via.placeholder.com/300x240" alt=""
-                                class="w-full h-40 rounded-t-lg">
-                            <div class="p-4 flex flex-col gap-2">
-                                <div class="flex items-center gap-2">
-                                    <p class="tag">UI/UX</p>
-                                </div>
-                                <div class="flex flex-col gap-1">
-                                    <h3 class="text-2xl font-bold">Rayhan Wahyu T</h3>
-                                    <p class="text-sm text-neutral-500">Teknik Informatika - 2021</p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="bg-white rounded-lg">
-                            <img src="https://via.placeholder.com/300x240" alt=""
-                                class="w-full h-40 rounded-t-lg">
-                            <div class="p-4 flex flex-col gap-2">
-                                <div class="flex items-center gap-2">
-                                    <p class="tag">UI/UX</p>
-                                </div>
-                                <div class="flex flex-col gap-1">
-                                    <h3 class="text-2xl font-bold">Rayhan Wahyu T</h3>
-                                    <p class="text-sm text-neutral-500">Teknik Informatika - 2021</p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="bg-white rounded-lg">
-                            <img src="https://via.placeholder.com/300x240" alt=""
-                                class="w-full h-40 rounded-t-lg">
-                            <div class="p-4 flex flex-col gap-2">
-                                <div class="flex items-center gap-2">
-                                    <p class="tag">UI/UX</p>
-                                </div>
-                                <div class="flex flex-col gap-1">
-                                    <h3 class="text-2xl font-bold">Rayhan Wahyu T</h3>
-                                    <p class="text-sm text-neutral-500">Teknik Informatika - 2021</p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="bg-white rounded-lg">
-                            <img src="https://via.placeholder.com/300x240" alt=""
-                                class="w-full h-40 rounded-t-lg">
-                            <div class="p-4 flex flex-col gap-2">
-                                <div class="flex items-center gap-2">
-                                    <p class="tag">UI/UX</p>
-                                </div>
-                                <div class="flex flex-col gap-1">
-                                    <h3 class="text-2xl font-bold">Rayhan Wahyu T</h3>
-                                    <p class="text-sm text-neutral-500">Teknik Informatika - 2021</p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="bg-white rounded-lg">
-                            <img src="https://via.placeholder.com/300x240" alt=""
-                                class="w-full h-40 rounded-t-lg">
-                            <div class="p-4 flex flex-col gap-2">
-                                <div class="flex items-center gap-2">
-                                    <p class="tag">UI/UX</p>
-                                </div>
-                                <div class="flex flex-col gap-1">
-                                    <h3 class="text-2xl font-bold">Rayhan Wahyu T</h3>
-                                    <p class="text-sm text-neutral-500">Teknik Informatika - 2021</p>
-                                </div>
-                            </div>
-
-                        </div>
+                        @endforeach
+                    </div>
+                </div>
 
 
 

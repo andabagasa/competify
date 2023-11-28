@@ -105,7 +105,6 @@ class InformasiLombaController extends Controller
         $informasiLomba->addCategories($categories);
 
         return redirect('/admin/lomba');
-
     }
 
 

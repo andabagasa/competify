@@ -30,41 +30,25 @@
                     <div class="flex flex-wrap justify-between">
                         <div class="flex items-center">
                             <x-phosphor-funnel class="w-7 h-7" />
-                            <p class="text-black text-2xl font-bold">filter</p>
+                            <p class="text-black text-2xl font-bold">Filter</p>
                         </div>
-                        <a href="" class="self-center text-primary-300 text-sm font-semibold">reset</a>
+                        <a href="" class="self-center text-primary-300 text-sm font-semibold">Reset</a>
                     </div>
-
-                    <div class="flex flex-wrap  ">
-                        <p class="text-black text-base font-semibold mt-7 mb-4 w-full">Jenis Lomba</p>
-                        <div class="flex flex-wrap w-full mt-2 ">
-                            <input type="checkbox" id="myCheckbox" class="">
-                            <p class="pl-2 text-black text-sm font-normal">UI/UX</p>
+                    <div class="container">                    
+                            <!-- Kategori filter -->
+                        <div class="flex flex-wrap w-full mt-2">
+                             <form action="{{ route('show.lombas') }}" method="GET">
+                                 @foreach ($categories as $category)
+                                <div class="flex flex-wrap w-full mt-2">
+                                    <input type="checkbox" name="categories[]" value="{{ $category->category_id }}" id="category_{{ $category->category_id }}" class=""
+                                        {{ in_array($category->category_id, request('categories', [])) ? 'checked' : '' }}>
+                                    <label for="category_{{ $category->category_id }}" class="pl-2 text-black text-sm font-normal">{{ $category->name }}</label>
+                                </div>
+                                @endforeach
+                                <button type="submit" class="bg-primary-300 text-white px-4 py-2 rounded-lg mt-4">Filter</button>
+                            </form>
                         </div>
-                        <div class="flex flex-wrap w-full mt-2 ">
-                            <input type="checkbox" id="myCheckbox" class="">
-                            <p class="pl-2 text-black text-sm font-normal">BC/BIC</p>
-                        </div>
-                        <div class="flex flex-wrap w-full mt-2 ">
-                            <input type="checkbox" id="myCheckbox" class="">
-                            <p class="pl-2 text-black text-sm font-normal">CTF</p>
-                        </div>
-                        <div class="flex flex-wrap w-full mt-2 ">
-                            <input type="checkbox" id="myCheckbox" class="">
-                            <p class="pl-2 text-black text-sm font-normal">Software Development</p>
-                        </div>
-                        <div class="flex flex-wrap w-full mt-2 ">
-                            <input type="checkbox" id="myCheckbox" class="">
-                            <p class="pl-2 text-black text-sm font-normal">Poster</p>
-                        </div>
-                        <div class="flex flex-wrap w-full mt-2 ">
-                            <input type="checkbox" id="myCheckbox" class="">
-                            <p class="pl-2 text-black text-sm font-normal">Essay</p>
-                        </div>
-                        <div class="flex flex-wrap w-full mt-2 ">
-                            <input type="checkbox" id="myCheckbox" class="">
-                            <p class="pl-2 text-black text-sm font-normal">Debat</p>
-                        </div>
+                
                     </div>
                 </div>
 
@@ -81,9 +65,10 @@
                                         stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                 </svg>
                             </div>
-                            <input type="search" id="default-search"
-                                class="block w-full py-3 px-6 ps-10 text-neutral-400 text-base font-normal rounded-lg "
-                                placeholder="Cari Mentor" required>
+                            <form action="{{ route('show.lombas') }}" method="GET">
+                                <input type="search" name="query" id="default-search" class="block w-full py-3 px-6 ps-10 text-neutral-400 text-base font-normal rounded-lg" placeholder="Cari Lomba">
+                                <button type="submit">Search</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -93,13 +78,17 @@
                 <div class="mt-6 mb-12">
                     <div class="grid grid-cols-3 gap-4">
                         <div class=" bg-white rounded-lg">
-                            @foreach ($informasiLombas as $informasiLomba)
+                            @forelse ($informasiLombas as $informasiLomba)
                             <div class="w-full bg-white rounded-lg swiper-slide">
                                 <img src="{{ Storage::url($informasiLomba->poster) }}" alt="" class="object-cover w-full h-40 rounded-t-lg">
                                 <div class="p-4 flex flex-col gap-2">
                                     <div class="flex items-center gap-2">
-                                        @foreach ($informasiLomba->InformasiLombaCategory->take(4) as $category)
-                                        <p class="tag">{{ optional($category->Category)->name }}</p>
+                                        @foreach ($informasiLomba->InformasiLombaCategory->take(3) as $category)
+                                        <p class="tag">{{ Str::of(optional($category->Category)->name)->limit(14) }}</p>
+                                        @if($loop->iteration === 3 && $informasiLomba->InformasiLombaCategory->count() > 3)
+                                        <p class="tag/profile-edit">...</p>
+                                        @break
+                                        @endif
                                         @endforeach
                                     </div>
                                     <div class="flex flex-col gap-1">
@@ -118,8 +107,10 @@
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
-
+                            @empty
+                            <p>Lomba tidak ditemukan.</p>
+                            @endforelse
+                        </div>
                     </div>
                 </div>
                 <!-- carousel -->
@@ -137,4 +128,6 @@
 
 
 </main>
+
 @endsection
+
