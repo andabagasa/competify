@@ -31,9 +31,9 @@
                     <div class="flex flex-wrap justify-between">
                         <div class="flex items-center">
                              <x-phosphor-funnel class="w-7 h-7" />
-                            <p class="text-black text-2xl font-bold">filter</p>
+                            <p class="text-black text-2xl font-bold">Filter</p>
                         </div>
-                        <a href="" class="self-center text-primary-300 text-sm font-semibold">reset</a>
+                        <a href="" class="self-center text-primary-300 text-sm font-semibold">Reset</a>
                     </div>
 
                     <div class="flex flex-wrap  ">
@@ -76,8 +76,9 @@
                 <!-- carousel -->
                 <div class="mt-6 mb-12">
                     <div class="grid grid-cols-3 gap-4">
-                        @foreach ($mahasiswas as $mahasiswa)
+                        @forelse ($mahasiswas as $mahasiswa)
                         <div class="w-full bg-white rounded-lg swiper-slide">
+                            <a href="{{ route('partner.details', ['id' => $mahasiswa->mahasiswa_id]) }}">
                             <img src="{{ Storage::url($mahasiswa->photo) }}" alt="" class="object-cover w-full h-40 rounded-t-lg">
                             <div class="p-4 flex flex-col gap-2">
                                 <div class="flex items-center gap-2">
@@ -94,8 +95,11 @@
                                     <p class="text-sm text-neutral-500">{{ $mahasiswa->prodi }} - {{ $mahasiswa->angkatan }}</p>
                                 </div>
                             </div>
+                            </a>
                         </div>
-                        @endforeach
+                        @empty
+                        <p>Partner tidak ditemukan.</p>
+                        @endforelse
                     </div>
                 </div>
 

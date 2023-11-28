@@ -80,6 +80,7 @@
                         <div class=" bg-white rounded-lg">
                             @forelse ($informasiLombas as $informasiLomba)
                             <div class="w-full bg-white rounded-lg swiper-slide">
+                                <a href="{{ route('lomba.details', ['id' => $informasiLomba->id_lomba]) }}">
                                 <img src="{{ Storage::url($informasiLomba->poster) }}" alt="" class="object-cover w-full h-40 rounded-t-lg">
                                 <div class="p-4 flex flex-col gap-2">
                                     <div class="flex items-center gap-2">
@@ -106,6 +107,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                </a>
                             </div>
                             @empty
                             <p>Lomba tidak ditemukan.</p>

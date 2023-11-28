@@ -42,6 +42,14 @@ class DashboardController extends Controller
         return view('users.lomba', compact('informasiLombas', 'categories'));
     }
 
+    public function showLombaDetails($id)
+    {
+        $categories = Category::all();
+        $informasiLombas = InformasiLomba::findOrFail($id);
+
+        return view('users.lomba-details', compact('informasiLombas', 'categories'));
+    }
+
     public function showPartners(Request $request)
     {
         $query = $request->input('query');
@@ -65,6 +73,20 @@ class DashboardController extends Controller
             ->get();
     
         return view('users.partner', compact('mahasiswas', 'categories'));
+    }
+
+    public function showPartnerDetails($id)
+    {
+        $mahasiswa = Mahasiswa::with('guest')->findOrFail($id);
+
+        $guest = $mahasiswa->guest;
+
+        $user = Auth::user();
+        if ($user && $user->guest_type === 'Mahasiswa' && $user->guest_id === $guest->id) {
+            return view('users.partner-details', ['guests' => $user, 'mahasiswa' => $mahasiswa]);
+        }
+
+        return view('users.partner-details', ['guests' => $guest, 'mahasiswa' => $mahasiswa]);
     }
 
 
