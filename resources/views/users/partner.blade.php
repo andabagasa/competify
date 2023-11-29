@@ -3,7 +3,65 @@
 @section('title', 'Partner')
 
 @section('content')
-<main>
+<main class="my-6 flex flex-col gap-12">
+    <div class="w-full container mx-auto h-60 bg-blue-600 rounded-3xl flex flex-col justify-center items-center gap-4">
+        <h1 class="text-5xl text-center text-white font-bold">Partner</h1>
+        <p class="w-3/4 text-center text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod itaque laudantium sit numquam quisquam voluptatem provident vero quis commodi quasi cumque maiores exercitationem aspernatur, architecto ab necessitatibus, tempore culpa eos!</p>
+    </div>
+    <section class="w-full flex gap-6 container mx-auto">
+        <div class="w-1/4 p-6 bg-white drop-shadow rounded-2xl flex flex-col gap-6 h-fit">
+            <div class="flex gap-4 items-center justify-start">
+                <x-phosphor-funnel class="w-6 h-6" />
+                <h2 class="text-2xl font-bold">Filter</h2>
+            </div>
+            <div class="flex flex-col gap-2">
+                <h3 class="font-semibold">Keminatan</h3>
+                <form action="{{ route('show.partners') }}" method="get" class="flex flex-col gap-2">
+                    @foreach ($categories as $category)
+                    <div class="flex gap-1">
+                        <input type="checkbox" name="categories[]" value="{{ $category->category_id }}" id="category_{{ $category->category_id }}" {{ in_array($category->category_id, request('categories', [])) ? 'checked' : '' }}>
+                        <label for="category_{{ $category->category_id }}" class="pl-2 text-black text-sm font-normal">{{ $category->name }}</label>
+                    </div>
+                    @endforeach
+                    <button type="submit" class="btn-primary-small mt-4">Terapkan</button>
+                </form>
+            </div>
+        </div>
+            <div class="w-full flex flex-col gap-6">
+                <form action="{{ route('show.partners') }}" method="get" class="flex gap-2">
+                    <input type="search" name="query" id="default-search" class="input-field w-1/3" placeholder="Cari berdasarkan nama">
+                    <button type="submit" class="btn-primary-small">Cari</button>
+                </form>
+                <div class="grid grid-cols-3 gap-4">
+                    @forelse ($mahasiswas as $mahasiswa)
+                    <div class="w-full bg-white rounded-lg swiper-slide">
+                        <a href="{{ route('partner.details', ['id' => $mahasiswa->mahasiswa_id]) }}">
+                        <img src="{{ Storage::url($mahasiswa->photo) }}" alt="" class="object-cover w-full h-40 rounded-t-lg">
+                        <div class="p-4 flex flex-col gap-2">
+                            <div class="flex items-center gap-2">
+                                @foreach ($mahasiswa->MahasiswaCategory->take(3) as $category)
+                                <p class="tag">{{ Str::of(optional($category->Category)->name)->limit(14) }}</p>
+                                @if($loop->iteration === 3 && $mahasiswa->MahasiswaCategory->count() > 3)
+                                <p class="tag/profile-edit">...</p>
+                                @break
+                                @endif
+                                @endforeach
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <h3 class="text-2xl font-bold">{{ Str::of($mahasiswa->guest->name)->limit(16) }}</h3>
+                                <p class="text-sm text-neutral-500">{{ $mahasiswa->prodi }} - {{ $mahasiswa->angkatan }}</p>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    @empty
+                    <p class="text-lg font-bold">Partner Tidak Ditemukan.</p>
+                    @endforelse
+                </div>
+            </div>
+    </section>
+</main>
+{{-- <main>
     <!-- Header  -->
     <header class="mx-24 mt-12">
         <div class=" w-full mx-auto h-60 relative bg-blue-600 rounded-3xl flex justify-center flex-wrap">
@@ -118,5 +176,5 @@
     </section>
     <!-- Main -->
 
-</main>
+</main> --}}
 @endsection

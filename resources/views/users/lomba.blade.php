@@ -3,7 +3,76 @@
 @section('title', 'Lomba')
 
 @section('content')
-<main>
+<main class="my-6 flex flex-col gap-12">
+    <div class="w-full container mx-auto h-60 bg-blue-600 rounded-3xl flex flex-col justify-center items-center gap-4">
+        <h1 class="text-5xl text-center text-white font-bold">Lomba</h1>
+        <p class="w-3/4 text-center text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod itaque laudantium sit numquam quisquam voluptatem provident vero quis commodi quasi cumque maiores exercitationem aspernatur, architecto ab necessitatibus, tempore culpa eos!</p>
+    </div>
+    <section class="w-full flex gap-6 container mx-auto">
+        <div class="w-1/4 p-6 bg-white drop-shadow rounded-2xl flex flex-col gap-6 h-fit">
+            <div class="flex gap-4 items-center justify-start">
+                <x-phosphor-funnel class="w-6 h-6" />
+                <h2 class="text-2xl font-bold">Filter</h2>
+            </div>
+            <div class="flex flex-col gap-2">
+                <h3 class="font-semibold">Keminatan</h3>
+                <form action="{{ route('show.lombas') }}" method="get" class="flex flex-col gap-2">
+                    @foreach ($categories as $category)
+                    <div class="flex gap-1">
+                        <input type="checkbox" name="categories[]" value="{{ $category->category_id }}" id="category_{{ $category->category_id }}" {{ in_array($category->category_id, request('categories', [])) ? 'checked' : '' }}>
+                        <label for="category_{{ $category->category_id }}" class="pl-2 text-black text-sm font-normal">{{ $category->name }}</label>
+                    </div>
+                    @endforeach
+                    <button type="submit" class="btn-primary-small mt-4">Terapkan</button>
+                </form>
+            </div>
+        </div>
+            <div class="w-full flex flex-col gap-6">
+                <form action="{{ route('show.lombas') }}" method="get" class="flex gap-2">
+                    <input type="search" name="query" id="default-search" class="input-field w-1/2" placeholder="Cari berdasarkan nama atau penyelenggara">
+                    <button type="submit" class="btn-primary-small">Cari</button>
+                </form>
+                <div class="grid grid-cols-3 gap-4">
+                    @forelse ($informasiLombas as $informasiLomba)
+                    <div class="w-full bg-white rounded-lg swiper-slide">
+                        <a href="{{ route('lomba.details', ['id' => $informasiLomba->id_lomba]) }}">
+                        <img src="{{ Storage::url($informasiLomba->poster) }}" alt="" class="object-cover w-full h-40 rounded-t-lg">
+                        <div class="p-4 flex flex-col gap-2">
+                            <div class="flex items-center gap-2">
+                                @foreach ($informasiLomba->InformasiLombaCategory->take(3) as $category)
+                                <p class="tag">{{ Str::of(optional($category->Category)->name)->limit(14) }}</p>
+                                @if($loop->iteration === 3 && $informasiLomba->InformasiLombaCategory->count() > 3)
+                                <p class="tag/profile-edit">...</p>
+                                @break
+                                @endif
+                                @endforeach
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <h3 class="text-2xl font-bold">{{ $informasiLomba->title }}</h3>
+                                <p class="text-sm text-neutral-500">{{ $informasiLomba->organizer_name }}</p>
+                            </div>
+                            <div class="flex flex-col gap-2 p-2 rounded bg-primary-100">
+                                <div class="flex justify-between items-center text-primary-300">
+                                    <p>Open Registration</p>
+                                    <p class="font-semibold">{{ $informasiLomba->open_reg }}</p>
+                                </div>
+                                <div class="flex justify-between items-center text-red-500">
+                                    <p>Close Registration</p>
+                                    <p class="font-semibold">{{ $informasiLomba->close_reg }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+
+                    @empty
+                    <p class="text-lg font-bold">Lomba Tidak Ditemukan.</p>
+                    @endforelse
+                </div>
+            </div>
+    </section>
+</main>
+{{-- <main>
     <!-- Header  -->
     <header class="mx-24 mt-12">
         <div class=" w-full mx-auto h-60 relative bg-blue-600 rounded-3xl flex justify-center flex-wrap">
@@ -12,7 +81,7 @@
             <div class="w-[714px] text-center text-neutral-50 text-base font-normal  leading-normal mb-16 mt-4">
                 Lorem ipsum dolor sit amet consectetur. Tempor id nunc cursus euismod id egestas. Iaculis nec cursus sit
                 proin urna lorem ac potenti morbi.
-            </div> 
+            </div>
 
             <div class="absolute bottom-0 right-0"><img src="{{ asset('assets/images/tl.png') }}" alt=""></div>
             <div class="absolute top-0 left-0"><img src="{{ asset('assets/images/rb.png') }}" alt=""></div>
@@ -34,7 +103,7 @@
                         </div>
                         <a href="" class="self-center text-primary-300 text-sm font-semibold">Reset</a>
                     </div>
-                    <div class="container">                    
+                    <div class="container">
                             <!-- Kategori filter -->
                         <div class="flex flex-wrap w-full mt-2">
                              <form action="{{ route('show.lombas') }}" method="GET">
@@ -48,7 +117,7 @@
                                 <button type="submit" class="bg-primary-300 text-white px-4 py-2 rounded-lg mt-4">Filter</button>
                             </form>
                         </div>
-                
+
                     </div>
                 </div>
 
@@ -129,7 +198,7 @@
     <!-- Main -->
 
 
-</main>
+</main> --}}
 
 @endsection
 

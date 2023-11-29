@@ -17,8 +17,8 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($categories as $category)
                 <tr>
-                    @foreach ($categories as $category)
                     <td class="table-body">{{ $category->name }}</td>
                     <td class="table-body">
                         <div class="flex gap-4">
@@ -32,8 +32,8 @@
                             </form>
                         </div>
                     </td>
-                    @endforeach
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
