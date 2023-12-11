@@ -27,7 +27,7 @@
                 <div class="w-1/2 p-6 bg-white border border-neutral-300 rounded-2xl flex flex-col gap-1">
                     <h2 class="text-2xl font-bold">Data Diri</h2>
                     <label for="name" class="label-input mt-5">Nama</label>
-                    <input type="text" name="name" id="name" class="input-field" placeholder="Masukkan nama lengkap" value="{{ $guest->name }}">
+                    <input type="text" name="nama" id="nama" class="input-field" placeholder="Masukkan nama lengkap" value="{{ $guest->name }}">
                     <label for="nim" class="label-input mt-3">NIM</label>
                     <input type="text" name="nim" id="nim" class="input-field" placeholder="Masukkan nim" value="{{ $mahasiswa->nim }}">
                     <label for="email" class="label-input mt-3">Email</label>

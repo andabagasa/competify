@@ -38,7 +38,7 @@ class MahasiswaController extends Controller
             'no_tlp' => 'required|string',
             'acc_linkedin' => 'required|string',
             'acc_instagram' => 'required|string',
-            'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:5000',
+            'photo' => 'image|mimes:jpeg,png,jpg,gif|max:5000',
         ]);
 
         $mahasiswa = Mahasiswa::findOrFail($id);

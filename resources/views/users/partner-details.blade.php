@@ -9,7 +9,6 @@
         <p>Kembali</p>
     </a>
     <div class="flex flex-col justify-center items-center gap-12 pt-6 pb-20">
-        <h1 class="text-4xl font-bold">Profil</h1>
         <div class="flex flex-col gap-6 justify-center items-center">
             @if ($mahasiswa->photo == null)
             <span class="p-[42px] rounded-full bg-primary-100 text-primary-300">
